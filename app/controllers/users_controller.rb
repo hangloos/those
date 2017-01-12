@@ -6,4 +6,9 @@ before_action :authenticate_user!, only: [:edit]
       render json: user
   end
 
+  def edit
+  end
+
+  
+
 end
