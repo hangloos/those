@@ -10,10 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112173515) do
+ActiveRecord::Schema.define(version: 20170112183553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "review_id"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "list_reviews", force: :cascade do |t|
+    t.integer  "list_id"
+    t.integer  "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "title"
+    t.string   "imdb_id"
+    t.string   "viewing_platform"
+    t.decimal  "those_movie_guys_rating"
+    t.string   "those_movie_guys_review"
+    t.string   "actors"
+    t.string   "genres"
+    t.string   "awards"
+    t.string   "box_office"
+    t.string   "director"
+    t.string   "language"
+    t.string   "picture_url"
+    t.string   "production"
+    t.string   "rated"
+    t.string   "year"
+    t.string   "runtime"
+    t.string   "review_type"
+    t.string   "writer"
+    t.decimal  "imdb_rating"
+    t.integer  "imdb_votes"
+    t.string   "tomato_consensus_review"
+    t.integer  "tomato_user"
+    t.integer  "tomato_user_votes"
+    t.integer  "tomato_critics"
+    t.integer  "tomato_critics_votes"
+    t.string   "tomato_url"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",     null: false
