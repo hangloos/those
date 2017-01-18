@@ -16,10 +16,12 @@
                     templateUrl: 'user/user.html',
                     controller: 'UserController as vm'
                 })
-
+                .state('home.reviews',  {
+                    url: 'reviews',
+                    templateUrl: 'review/reviews.html',
+                    controller: 'ReviewController as vm'
+                })
             $urlRouterProvider.otherwise('/')
         })
-
-
 
 }());

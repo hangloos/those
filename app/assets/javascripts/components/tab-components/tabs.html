@@ -1,0 +1,16 @@
+<div class="sidebar-left">
+    <div
+        ng-class="{active:pane.selected}"
+        ng-repeat="pane in $ctrl.panes">
+        <a
+            href=""
+            ng-click="$ctrl.select(pane)">
+            {{ pane.title }}
+        </a>
+    </div>
+</div>
+
+<div
+    class="main-content"
+    ng-transclude>
+</div>
