@@ -1,8 +1,8 @@
-angular
-      .module('those-movie-guys')
-      .factory('HomeFactory', HomeFactory)
 
-    function HomeFactory($stateParams, $http)  {
+(function() {
+
+    'use strict';
+    function PopularFactory($http)  {
 
       return {
         getDiscoverMovieInformation: getDiscoverMovieInformation,
@@ -33,3 +33,10 @@ angular
       }
 
     }
+
+
+    angular
+      .module('those-movie-guys')
+      .factory('PopularFactory', PopularFactory)
+
+      }());

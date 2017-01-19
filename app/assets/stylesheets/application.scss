@@ -26,3 +26,30 @@
 .image {
   display: table-cell;    
 }
+
+div.sidebar-left {
+     padding: 30px;
+     float: left;
+     width: 10%;
+     height: 100vh;
+     background-color: #A9A9A9;
+     box-sizing: border-box;
+ }
+
+ a:active {
+     color: white;
+ }
+
+ a {
+     text-decoration: none;
+     color: white;
+ }
+
+ body     {
+ background-image: url("https://s24.postimg.org/9po47acf9/Full_Size_R_02.jpg");
+ background-size: 400px 300px;
+ }
+
+ p.link-text    {
+     color: white;
+ }

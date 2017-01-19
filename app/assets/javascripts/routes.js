@@ -11,7 +11,7 @@
                     templateUrl: 'home/home.html',
                     controller: 'HomeController as vm'
                 })
-                .state('home.user', {
+                .state('home.user',     {
                     url: 'user',
                     templateUrl: 'user/user.html',
                     controller: 'UserController as vm'
@@ -21,12 +21,22 @@
                     templateUrl: 'review/reviews.html',
                     controller: 'ReviewController as vm'
                 })
+                .state('home.popular',  {
+                    url: 'trending',
+                    templateUrl: 'popular/popular.html',
+                    controller: 'PopularController as vm',
+                })
+                .state('home.about',    {
+                    url: 'about',
+                    templateUrl: 'home/about.html',
+                    controller: 'HomeController as vm'
+                })
                 .state('createReview', {
                     url: '/reviews/create',
                     templateUrl: 'review/new.html',
                     controller: 'ReviewController as vm',
                 })
-            $urlRouterProvider.otherwise('/')
+            $urlRouterProvider.otherwise('trending')
         })
 
 }());

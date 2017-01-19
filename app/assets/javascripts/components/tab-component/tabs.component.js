@@ -9,20 +9,23 @@
     }
 
     function TabsController() {
+        console.log("tabs")
         var panes = this.panes = []
-
-        this.select = function(pane) {
-            angular.forEach(panes, function(pane) {
-                pane.selected = false
-            });
-            pane.selected = true
-        }
 
         this.addPane = function(pane) {
             if (panes.length === 0) {
                 this.select(pane)
             }
             panes.push(pane)
+        }
+
+        this.select = function(pane) {
+            angular.forEach(panes, function(pane) {
+                pane.selected = false
+            });
+            console.log(pane)
+            pane.selected = true
+            console.log(pane)
         }
     }
 

@@ -15,6 +15,7 @@
     }
 
     function PaneController() {
+        console.log("pane")
         this.$onInit = function() {
             this.TabsController.addPane(this)
         }
