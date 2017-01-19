@@ -1,6 +1,6 @@
 class ReviewsController < ActionController::Base
 
-    before_action :authenticate_user!, only: [:create, :update, :destroy]
+    before_action :authenticate_user!, only: [:update, :destroy]
 
     def index
         reviews = Review.all
@@ -13,13 +13,13 @@ class ReviewsController < ActionController::Base
     end
 
     def create
-        review = current_user.reviews.build(review_params)
+        review = Review.new(review_params)
+        #need to use current_user.build to get this to work later when I Get the admin user working
+        review.user = User.last
         if review.save
             render json: { status: 'ok'}
         else
-            render json: 
-                { errors: review.errors.full_messages },
-                status :unprocessable_entity
+            render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -28,9 +28,7 @@ class ReviewsController < ActionController::Base
         if review.update(review_params)
              render json: { status: 'ok'}
         else
-            render json: 
-                { errors: review.errors.full_messages },
-                status :unprocessable_entity
+            render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -42,26 +40,16 @@ class ReviewsController < ActionController::Base
           if review.destroy
           render json: { status: 'ok'}
           else
-          render json: 
-                  { errors: review.errors.full_messages },
-                  status :unprocessable_entity
+          render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
           end
       end
 
     end
 
 
-
-
-
-
-
-
-
-
     private
 
       def review_params
-          params.require(:review).permit(:awards, :box_office, :director,  :language, :picture_url, :production, :production, :rated, :year, :runtime, :title, :review_type, :imdb_id, :viewing_platform, :those_movie_guys_rating, :those_movie_guys_review, :writer, :imdb_rating, :imdb_votes, :tomato_consensus_review, :tomato_user, :tomato_critics, :tomato_critics_votes, :tomato_user_votes :tomato_url, :genres, :actors, :created_at, :updated_at, :user_id)
+          params.require(:review).permit(:awards, :box_office, :director,  :language, :picture_url, :production, :rated, :year, :runtime, :title, :review_type, :imdb_id, :viewing_platform, :those_movie_guys_rating, :those_movie_guys_review, :writer, :imdb_rating, :imdb_votes, :tomato_consensus_review, :tomato_user, :tomato_critics, :tomato_critics_votes, :tomato_user_votes, :tomato_url, :genres, :actors, :created_at, :updated_at, :user_id)
       end
   end

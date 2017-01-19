@@ -1,0 +1,20 @@
+<form  ng-submit="vm.createReviewInformation()">
+  <div >
+    <label>IMDB Id</label>
+    <input type="text" ng-model="vm.newReview.imdb_id" placeholder="Copy IMDB Id from URL" maxlength="9" minlength="9" required>
+  </div>
+  <div >
+    <label>Viewing Platform</label>
+    <input type="text" ng-model="vm.newReview.viewing_platform" placeholder="Where did you watch this on?" required>
+  </div>
+  <div >
+    <label>Rating</label>
+    <input type="number" step="0.1" ng-model="vm.newReview.those_movie_guys_rating" placeholder="Rating 1-10 (Decimal)" required>
+  </div>
+  <div >
+    <label>Review</label>
+    <textarea rows="2" ng-model="vm.newReview.those_movie_guys_review" placeholder="Short Description" required></textarea>
+  </div>
+  <button  type="submit">Submit</button>
+  <button type="reset" ng-click="vm.reset()">Reset</button>
+</form>
