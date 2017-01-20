@@ -1,7 +1,5 @@
 class ReviewsController < ActionController::Base
 
-    before_action :authenticate_user!, only: [:update, :destroy]
-
     def index
         reviews = Review.all
         render json: reviews

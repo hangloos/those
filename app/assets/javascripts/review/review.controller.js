@@ -14,6 +14,7 @@
         vm.reset = reset;
         vm.editTrueValue = false;
         vm.showEditForm = showEditForm;
+        vm.editReviewRating = editReviewRating;
 
         activate();
 
@@ -77,6 +78,12 @@
 
         function deleteReview(id) {
           return ReviewsFactory.deleteReview(id)
+                            .then(getReviews)
+          
+        }
+
+        function editReviewRating(id) {
+          return ReviewsFactory.updateReview(id,this.newReview)
                             .then(getReviews)
           
         }
