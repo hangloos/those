@@ -33,14 +33,14 @@ class ReviewsController < ActionController::Base
     def destroy
         # I need to change the current_user portion to make sure its an admin user and the same id. 
         review = Review.find_by_id(params[:id])
-        if review.user === current_user.id
-        Comment.where("review_id = ?", review.id).each{|x| x.destroy}
-          if review.destroy
+        #if review.user === current_user.id
+        #Comment.where("review_id = ?", review.id).each{|x| x.destroy}
+          if review.delete
           render json: { status: 'ok'}
           else
           render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
           end
-      end
+      #end
 
     end
 
