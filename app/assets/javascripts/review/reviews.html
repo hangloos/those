@@ -1,18 +1,28 @@
-<div class="container">
+<div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:search">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
-            <img class="image" src="http://pizzafactorytricity.ca/home/wp-content/uploads/2011/07/3-pizza4-300x282.jpg" alt="..."/>
+            <img class="img-thumbnail" src="{{review.picture_url}}" alt="movie_poster"/>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-8">
+        <div class="col-sm-12 col-md-6 col-lg-8" id="white-text">
             <div class="caption">
-              <h3>Thumbnail label</h3>
-              <p>...fsfjfkdfjlfkjs
-              fjsklfjskfsjflsjfdks
-              fsjfksjlfjsdklsjfl
-              fsfklfdsfjdskljslfsklfjlkfjslk
-              jflskfjs</p>
-              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+              <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}</a></h3>
+              <p>Those Movie Guys Review: {{review.those_movie_guys_review}}</p>
+              <p><img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
+              <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank" id="ratingsText">{{review.imdb_rating}}</a>  
+              <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{review.tomato_url}}" target="_blank">Critics - {{review.tomato_critics}}%</a>
+              <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
+              <a href="{{review.tomato_url}}" target="_blank">Users - {{review.tomato_user}}%</a>
+            </div>            
+        </div>
+         <div class="col-sm-12 col-md-6 col-lg-8">
+            <div class="caption" id="black-text">
+              <h3>Details</h3>
+              <p>Actors: {{review.actors}}</p>
+              <p>Genres: {{review.genres}}</p>
+              <p>Directors: {{review.director}}</p>
+              <p>Writers: {{review.writer}}</p>
+              <p>Runtime: {{review.runtime}}</p>
             </div>            
         </div>
     </div>

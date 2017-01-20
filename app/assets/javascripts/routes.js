@@ -31,8 +31,8 @@
                     templateUrl: 'home/about.html',
                     controller: 'HomeController as vm'
                 })
-                .state('createReview', {
-                    url: '/reviews/create',
+                .state('home.createReview', {
+                    url: 'reviews/create',
                     templateUrl: 'review/new.html',
                     controller: 'ReviewController as vm',
                 })

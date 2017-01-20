@@ -33,7 +33,6 @@
         }
 
         function setNewReview(movie) {
-    
           vm.newReview.title = movie.Title
           vm.newReview.actors = movie.Actors
           vm.newReview.genres = movie.Genre
@@ -55,6 +54,7 @@
           vm.newReview.tomato_user_votes = movie.tomatoUserReviews
           vm.newReview.tomato_critics = movie.tomatoMeter
           vm.newReview.tomato_critics_votes = movie.tomatoReviews
+          vm.newReview.tomato_url = movie.tomatoURL
         
           return ReviewsFactory.createReview(vm.newReview)
                               .then(setReviews)

@@ -27,6 +27,11 @@
   display: table-cell;    
 }
 
+.img-thumbnail {
+     max-width: 50%; 
+     max-height: 25%;
+}
+
 div.sidebar-left {
      padding: 30px;
      float: left;
@@ -52,4 +57,18 @@ div.sidebar-left {
 
  p.link-text    {
      color: white;
+ }
+
+ #white-text   {
+ color: white;
+ }
+
+ #black-text   {
+ color: black;
+ background-color: #fff;
+ }
+
+ #thumbnail-logo    {
+ max-width: 10%;
+ max-height: 10%;
  }
