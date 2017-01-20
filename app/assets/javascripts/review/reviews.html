@@ -1,12 +1,16 @@
-<div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:search">
+<input type="text" class="form-control" placeholder="Search Titles" ng-model="searchBox.title">
+<input type="text" class="form-control" placeholder="Search By Rating" ng-model="searchBox.those_movie_guys_rating">
+<br></br>
+<div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <img class="img-thumbnail" src="{{review.picture_url}}" alt="movie_poster"/>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-8" id="white-text">
+        <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
             <div class="caption">
               <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}</a></h3>
+              <p id="tmgRating">{{review.those_movie_guys_rating}}</p>
               <p>Those Movie Guys Review: {{review.those_movie_guys_review}}</p>
               <p><img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
               <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank" id="ratingsText">{{review.imdb_rating}}</a>  
@@ -15,7 +19,7 @@
               <a href="{{review.tomato_url}}" target="_blank">Users - {{review.tomato_user}}%</a>
             </div>            
         </div>
-         <div class="col-sm-12 col-md-6 col-lg-8">
+         <div class="col-sm-12 col-md-6 col-lg-12">
             <div class="caption" id="black-text">
               <h3>Details</h3>
               <p>Actors: {{review.actors}}</p>
