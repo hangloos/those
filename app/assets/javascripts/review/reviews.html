@@ -1,10 +1,16 @@
-<input type="text" class="form-control" placeholder="Search Titles" ng-model="searchBox.title">
+<input type="text" class="form-control" placeholder="Search By Title" ng-model="searchBox.title">
 <input type="text" class="form-control" placeholder="Search By Rating" ng-model="searchBox.those_movie_guys_rating">
 <br></br>
 <div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <img class="img-thumbnail" src="{{review.picture_url}}" alt="movie_poster"/>
+                <div class="commentText" ng-repeat="comment in review.comments" id="white-text">
+                    <p class="">{{comment.comment}}-{{comment.user.username}}</p> <span class="date sub-text">{{comment.created_at}}</span></div>
+                <div class="form-group">
+                <input class="form-control" type="text" placeholder="Your comments" />
+                <button class="btn btn-default">Add Comment</button>
+                </div>
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
@@ -16,14 +22,14 @@
               
               <p>Those Movie Guys Review: {{review.those_movie_guys_review}}</p>
               <p><img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
-              <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank" id="ratingsText">{{review.imdb_rating}}</a>  
+              <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank">{{review.imdb_rating}}</a>  
               <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{review.tomato_url}}" target="_blank">Critics - {{review.tomato_critics}}%</a>
               <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
               <a href="{{review.tomato_url}}" target="_blank">Users - {{review.tomato_user}}%</a>
             </div>            
         </div>
          <div class="col-sm-12 col-md-6 col-lg-12">
-            <div class="caption" id="black-text">
+            <div class="caption" id="white-text">
               <h3>Details</h3>
               <p>Actors: {{review.actors}}</p>
               <p>Genres: {{review.genres}}</p>

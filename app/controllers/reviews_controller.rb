@@ -1,14 +1,14 @@
 class ReviewsController < ActionController::Base
 
     def index
-        reviews = Review.all
-        render json: reviews
+        render json: Review.eager_load(comments: [:user]).all.as_json(include: [comments: {include: [:user]}])
     end
 
     def show
-        review = Review.find_by_id(params[:id])
-        render json: review
+        render json: Review.eager_load(comments: [:user]).find(params[:id]).as_json(include: [comments: {include: [:user]}])
     end
+
+
 
     def create
         review = Review.new(review_params)
@@ -41,7 +41,6 @@ class ReviewsController < ActionController::Base
           render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
           end
       #end
-
     end
 
 
