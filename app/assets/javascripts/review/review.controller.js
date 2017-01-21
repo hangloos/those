@@ -16,6 +16,9 @@
         vm.showEditForm = showEditForm;
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
+        vm.loadMore = loadMore;
+
+        vm.commentsLimit = 2;
         
 
         activate();
@@ -95,6 +98,17 @@
         function createComment(id)  {
           return CommentsFactory.createComment(id, this.newComment)
                                 .then(getReviews)
+        }
+
+        function loadMore(id) {
+          return CommentsFactory.getCommentsTotal(id)
+                                  .then(setLimit)
+        }
+
+        function setLimit(review) {
+          vm.commentsLimit = review.comments.length
+          getReviews();
+
         }
 
 

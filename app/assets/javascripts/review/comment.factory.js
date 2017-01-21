@@ -6,7 +6,9 @@
     function CommentsFactory($http)  {
 
       return  {
-        createComment: createComment
+        createComment: createComment,
+        getCommentsTotal: getCommentsTotal
+        
       }
 
 
@@ -25,6 +27,11 @@
           return $http(req)
                     .catch(handleError)
 
+      }
+
+      function getCommentsTotal(id) {
+        return $http.get('/reviews/' + id)
+                  .then(handleResponse)
       }
 
       function handleResponse(response) {
