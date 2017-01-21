@@ -6,7 +6,7 @@
         .module('those-movie-guys')
         .controller('ReviewController', ReviewController)
 
-   function ReviewController($location, ReviewsFactory) {
+   function ReviewController($location, ReviewsFactory, CommentsFactory) {
         var vm = this;
 
         vm.deleteReview = deleteReview;
@@ -15,6 +15,8 @@
         vm.editTrueValue = false;
         vm.showEditForm = showEditForm;
         vm.editReviewRating = editReviewRating;
+        vm.createComment = createComment;
+        
 
         activate();
 
@@ -23,6 +25,8 @@
         }
 
         function getReviews() {
+          vm.newComment = ""
+          vm.newReview = ""
           return ReviewsFactory.getReviews()
                         .then(setReviews)
         }
@@ -87,6 +91,13 @@
                             .then(getReviews)
           
         }
+
+        function createComment(id)  {
+          return CommentsFactory.createComment(id, this.newComment)
+                                .then(getReviews)
+        }
+
+
 
     }
 

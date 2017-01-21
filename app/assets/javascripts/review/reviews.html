@@ -8,8 +8,8 @@
                 <div class="commentText" ng-repeat="comment in review.comments" id="white-text">
                     <p class="">{{comment.comment}}-{{comment.user.username}}</p> <span class="date sub-text">{{comment.created_at}}</span></div>
                 <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" />
-                <button class="btn btn-default">Add Comment</button>
+                <input class="form-control" type="text" placeholder="Your comments" ng-model="vm.newComment"/>
+                <button class="btn btn-default" ng-click="vm.createComment(review.id)">Add Comment</button>
                 </div>
         </div>
 
