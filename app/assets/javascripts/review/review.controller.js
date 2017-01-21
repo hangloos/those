@@ -17,6 +17,7 @@
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
         vm.loadMore = loadMore;
+        vm.deleteComment = deleteComment
 
         vm.commentsLimit = 2;
         
@@ -109,6 +110,11 @@
           vm.commentsLimit = review.comments.length
           getReviews();
 
+        }
+
+        function deleteComment(comment_id)  {
+          return CommentsFactory.deleteComment(comment_id)
+                                  .then(getReviews)
         }
 
 

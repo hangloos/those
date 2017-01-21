@@ -7,7 +7,8 @@
 
       return  {
         createComment: createComment,
-        getCommentsTotal: getCommentsTotal
+        getCommentsTotal: getCommentsTotal,
+        deleteComment: deleteComment
         
       }
 
@@ -32,6 +33,21 @@
       function getCommentsTotal(id) {
         return $http.get('/reviews/' + id)
                   .then(handleResponse)
+      }
+
+      function  deleteComment(comment_id) {
+        var req = {
+            method: 'DELETE',
+            url: '/reviews/:review_id/comments/:comment_id',
+            headers: {
+              'Content-Type': 'application/json' 
+            },
+            data: {
+              id: comment_id
+            }
+          };
+          return $http(req)
+                    .catch(handleError)
       }
 
       function handleResponse(response) {

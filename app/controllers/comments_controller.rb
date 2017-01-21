@@ -1,6 +1,6 @@
 class CommentsController < ActionController::Base
 
-def create
+  def create
   #need to use current user here as well to know who creates the comment
   review = Review.find_by_id(params[:id])
   #change the user_id portion when get login setup
@@ -10,6 +10,15 @@ def create
         else
             render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
         end
+  end
+
+  def destroy
+    comment = Comment.find_by_id(params[:comment][:id])
+          if comment.delete
+          render json: { status: 'ok'}
+          else
+          render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+          end
   end
 
 
