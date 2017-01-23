@@ -16,6 +16,12 @@
                     templateUrl: 'home/register.html',
                     controller: 'HomeController as vm'
                 })
+
+                .state('login', {
+                    url: '/login',
+                    templateUrl: 'home/login.html',
+                    controller: 'HomeController as vm'
+                })
                  .state('logout', {
                     url: '/logout',
                     templateUrl: 'home/home.html',
