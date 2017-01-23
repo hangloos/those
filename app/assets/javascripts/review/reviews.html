@@ -12,15 +12,15 @@
                     <button ng-click='vm.loadMore(review.id)' ng-show="review.comments.length > 0">Load More</button>
                 
                 <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" ng-model="vm.newComment"/>
-                <button class="btn btn-default" ng-click="vm.createComment(review.id)">Add Comment</button>
+                <input class="form-control" ng-show="current_user" type="text" placeholder="Your comments" ng-model="vm.newComment"/>
+                <button class="btn btn-default" ng-click="vm.createComment(review.id)" ng-show="current_user">Add Comment</button>
                 </div>
         </div>
 
         <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
             <div class="caption">
               <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}</a></h3>
-              <p id="tmgRating">{{review.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(review.id)"><span class="glyphicon glyphicon-edit"></span>Delete</button>
+              <p id="tmgRating">{{review.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()" ng-show="current_user.admin"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(review.id)" ng-show="current_user.admin"><span class="glyphicon glyphicon-edit"></span>Delete</button>
               
               <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
               

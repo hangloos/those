@@ -24,7 +24,7 @@
                 })
                  .state('logout', {
                     url: '/logout',
-                    templateUrl: 'home/home.html',
+                    templateUrl: 'home/logout.html',
                     controller: 'HomeController as vm'
                 })
                 .state('home.user',     {

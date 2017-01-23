@@ -62,6 +62,7 @@
         $rootScope.$on('devise:logout', function(event, user)  {
           $rootScope.currentUser = {}
           window.localStorage.removeItem('user')
+          $location.path('/reviews')
         })
 
   }
