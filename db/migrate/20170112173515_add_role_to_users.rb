@@ -1,5 +1,6 @@
 class AddRoleToUsers < ActiveRecord::Migration[5.0]
   def change
-    add_column :users, :role, :string, :default => "user"
+    add_column :users, :admin, :boolean, :default => false
+    add_index :users, :admin, unique: true
   end
 end

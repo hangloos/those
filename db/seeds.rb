@@ -8,7 +8,7 @@
 
 
 List.create(user_id: 1)
-User.create(username: "mollyellis", email: "mollyellis5@gmail.com", password: "indiana10", role: "admin")
+#User.create(username: "mollyellis", email: "mollyellis5@gmail.com", password: "indiana10", role: "admin")
 Review.create(user_id: 2)
 List.create(user_id: 2)
 Review.create(user_id: 1)
