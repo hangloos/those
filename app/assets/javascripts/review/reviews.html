@@ -8,7 +8,7 @@
                 <div class="commentText" ng-repeat="comment in review.comments | limitTo:vm.commentsLimit" id="white-text">
                     <p class="">{{comment.comment}}-{{comment.user.username}}-{{comment.created_at | date: 'longDate'}}</p> <span class="date sub-text"><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteComment(comment.id)">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></button></span></div>
-                    <button ng-click='vm.loadMore(review.id)' ng-hide="review.comments.length <= 0">Load More</button>
+                    <button ng-click='vm.loadMore(review.id)' >Load More</button>
                 
                 <div class="form-group">
                 <input class="form-control" type="text" placeholder="Your comments" ng-model="vm.newComment"/>
