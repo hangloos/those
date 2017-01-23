@@ -1,10 +1,11 @@
 class CommentsController < ActionController::Base
 
+  before_action :authenticate_user!, only: [:create]
+
   def create
-  #need to use current user here as well to know who creates the comment
+  
   review = Review.find_by_id(params[:id])
-  #change the user_id portion when get login setup
-  comment = review.comments.build(comment: params[:comment], user_id: 4)
+  comment = review.comments.build(comment: params[:comment], user_id: current_user.id)
         if comment.save
             render json: { status: 'ok'}
         else
