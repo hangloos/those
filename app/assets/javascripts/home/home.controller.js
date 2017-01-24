@@ -15,6 +15,7 @@
         Auth.currentUser()
               .then(function(user)  {
                 vm.user = user
+                $rootScope.currentUser = user
               }, function(error)  {
                 console.log(error)
               }) 
@@ -29,9 +30,10 @@
 
             Auth.login(vm.userForm, config)
                 .then(function(user)  {
-                  // $rootScope.currentUser = user
+                  //$rootScope.currentUser = user
                   // window.localStorage.setItem('user', JSON.stringify(user))
                   vm.user = user
+                  location.reload()
                   $location.path('/reviews')
                 }, function(error)  {
                   $rootScope.errors = error.data.errors
@@ -52,6 +54,7 @@
                       // $rootScope.currentUser = registeredUser
                       // window.localStorage.setItem('user', JSON.stringify(registeredUser))
                       vm.user = user
+                      location.reload()
                       $location.path('/reviews')
                 }, function(error)  {
                   $rootScope.errors = error.data.errors

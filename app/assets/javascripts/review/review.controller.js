@@ -104,6 +104,7 @@
         }
 
         function loadMore(id) {
+          debugger
           return CommentsFactory.getCommentsTotal(id)
                                   .then(setLimit)
         }
