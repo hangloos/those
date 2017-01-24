@@ -6,11 +6,11 @@ class LikesController < ActionController::Base
         comment = Comment.find_by_id(params[:comment])
         l = Like.where("user_id = ? AND comment_id =?", current_user.id,comment.id)
         like = comment.likes.build(user_id: current_user.id)
-          if !l[0]
-              like.save
+          if !l[0] && like.save
               render json: { status: 'ok'}
           else
-              render json: { errors: like.errors.full_messages }, status: :unprocessable_entity
+              flash[:error] = 'You already likes this comment'
+              render json: { errors: like.errors.full_messages },  status: :unprocessable_entity
           end
     end
 

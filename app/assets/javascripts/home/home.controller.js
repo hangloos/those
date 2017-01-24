@@ -12,10 +12,9 @@
         vm.login = login
         vm.register = register
 
-         Auth.currentUser()
+        Auth.currentUser()
               .then(function(user)  {
-                window.localStorage.setItem('user', JSON.stringify(user))
-                $rootScope.currentUser = user
+                vm.user = user
               }, function(error)  {
                 console.log(error)
               }) 
@@ -30,8 +29,9 @@
 
             Auth.login(vm.userForm, config)
                 .then(function(user)  {
-                  $rootScope.currentUser = user
-                  window.localStorage.setItem('user', JSON.stringify(user))
+                  // $rootScope.currentUser = user
+                  // window.localStorage.setItem('user', JSON.stringify(user))
+                  vm.user = user
                   $location.path('/reviews')
                 }, function(error)  {
                   $rootScope.errors = error.data.errors
@@ -49,8 +49,9 @@
         
             Auth.register(vm.userForm, config)
                   .then(function(registeredUser)  {
-                      $rootScope.currentUser = registeredUser
-                      window.localStorage.setItem('user', JSON.stringify(registeredUser))
+                      // $rootScope.currentUser = registeredUser
+                      // window.localStorage.setItem('user', JSON.stringify(registeredUser))
+                      vm.user = user
                       $location.path('/reviews')
                 }, function(error)  {
                   $rootScope.errors = error.data.errors
@@ -60,9 +61,12 @@
 
 
         $rootScope.$on('devise:logout', function(event, user)  {
-          $rootScope.currentUser = {}
-          window.localStorage.removeItem('user')
+          // $rootScope.currentUser = {}
+          // window.localStorage.removeItem('user')
+          vm.user = {}
+          location.reload()
           $location.path('/reviews')
+          
         })
 
   }
