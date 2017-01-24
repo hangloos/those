@@ -1,9 +1,8 @@
 class ReviewsController < ActionController::Base
 
     def index
-        render json: Review.eager_load(comments: [:user]).all.as_json(include: [comments: {include: [:user]}])
+        render json: Review.eager_load(comments: [:user, :likes]).all.as_json(include: [comments: {include: [:user, :likes]}])    
     end
-
     def show
         render json: Review.eager_load(comments: [:user]).find(params[:id]).as_json(include: [comments: {include: [:user]}])
     end
