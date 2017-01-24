@@ -6,7 +6,7 @@
         .module('those-movie-guys')
         .controller('ReviewController', ReviewController)
 
-   function ReviewController($location, ReviewsFactory, CommentsFactory) {
+   function ReviewController($location, ReviewsFactory, CommentsFactory, LikesFactory) {
         var vm = this;
 
         vm.deleteReview = deleteReview;
@@ -17,7 +17,8 @@
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
         vm.loadMore = loadMore;
-        vm.deleteComment = deleteComment
+        vm.deleteComment = deleteComment;
+        vm.createLike = createLike;
 
         vm.commentsLimit = 2;
         
@@ -114,6 +115,11 @@
 
         function deleteComment(comment_id)  {
           return CommentsFactory.deleteComment(comment_id)
+                                  .then(getReviews)
+        }
+
+        function createLike(review_id, comment_id) {
+          return LikesFactory.createLike(review_id,comment_id)
                                   .then(getReviews)
         }
 

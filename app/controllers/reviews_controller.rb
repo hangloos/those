@@ -5,7 +5,6 @@ class ReviewsController < ActionController::Base
     end
 
     def show
-      binding.pry
         render json: Review.eager_load(comments: [:user]).find(params[:id]).as_json(include: [comments: {include: [:user]}])
     end
 

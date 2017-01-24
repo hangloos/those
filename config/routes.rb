@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :reviews, only: [:create, :destroy, :update, :index, :show] do 
-    resources :comments
+    resources :comments do
+      resources :likes
+    end
   end
 
   resources :users, only: [:show, :edit]
