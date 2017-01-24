@@ -32,7 +32,7 @@
                 .then(function(user)  {
                   $rootScope.currentUser = user
                   window.localStorage.setItem('user', JSON.stringify(user))
-                  $location.path('/')
+                  $location.path('/reviews')
                 }, function(error)  {
                   $rootScope.errors = error.data.errors
                   $rootScope.error = error.data.error

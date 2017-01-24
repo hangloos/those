@@ -5,6 +5,7 @@ class ReviewsController < ActionController::Base
     end
 
     def show
+      binding.pry
         render json: Review.eager_load(comments: [:user]).find(params[:id]).as_json(include: [comments: {include: [:user]}])
     end
 
@@ -29,16 +30,13 @@ class ReviewsController < ActionController::Base
     end
 
     def destroy
-        # I need to change the current_user portion to make sure its an admin user and the same id. 
         review = Review.find_by_id(params[:id])
-        #if review.user === current_user.id
-        #Comment.where("review_id = ?", review.id).each{|x| x.destroy}
+  
           if check_admin? && review.delete
           render json: { status: 'ok'}
           else
           render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
           end
-      #end
     end
 
 
