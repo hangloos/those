@@ -11,20 +11,15 @@
                     templateUrl: 'home/home.html',
                     controller: 'HomeController as vm'
                 })
-                .state('register', {
+                .state('home.register', {
                     url: '/register',
                     templateUrl: 'home/register.html',
                     controller: 'HomeController as vm'
                 })
-                .state('login', {
+                .state('home.login', {
                     url: '/login',
                     templateUrl: 'home/login.html',
                     controller: 'HomeController as vm'
-                })
-                .state('home.user',     {
-                    url: 'user',
-                    templateUrl: 'user/user.html',
-                    controller: 'UserController as vm'
                 })
                 .state('home.reviews',  {
                     url: 'reviews',

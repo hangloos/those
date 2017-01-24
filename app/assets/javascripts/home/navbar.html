@@ -16,14 +16,11 @@
         <li ><a ui-sref=".reviews" >Reviews<span ></span></a></li>
         <li ><a ui-sref=".about" >About<span ></span></a></li>
         <li class="dropdown">
-          <a ui-sref=".user" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User<span class="caret"></span></a>
+          <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Activity<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Your Lists</a></li>
             <li><a href="#">Your Comments</a></li>
             <li><a href="#">Your Likes</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Edit Profile</a></li>
-            <li role="separator" class="divider"></li>
           </ul>
         </li>
       </ul>
@@ -32,10 +29,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a ui-sref="login" ng-show="!vm.user">Login</a></li>
-            <li><a ui-sref="register" ng-show="!vm.user">Register</a></li>
-            <li><a ui-sref=".createReview">Create Review</a></li>
-            <li><a href="#">Edit Profile</a></li>
+            <li><a ui-sref=".login" ng-show="!vm.user">Login</a></li>
+            <li><a ui-sref=".register" ng-show="!vm.user">Register</a></li>
+            <li><a ui-sref=".createReview" ng-show="vm.user.admin">Create Review</a></li>
+            <li><a href="#" ng-show="vm.user">Edit Profile</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#" ng-click="vm.logout()" ng-show="vm.user">Logout</a></li>
           </ul>
