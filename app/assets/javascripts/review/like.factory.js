@@ -28,20 +28,21 @@
 
       }
 
-      // function  deleteComment(comment_id) {
-      //   var req = {
-      //       method: 'DELETE',
-      //       url: '/reviews/:review_id/comments/:comment_id',
-      //       headers: {
-      //         'Content-Type': 'application/json' 
-      //       },
-      //       data: {
-      //         id: comment_id
-      //       }
-      //     };
-      //     return $http(req)
-      //               .catch(handleError)
-      // }
+      function  deleteLike(review_id,comment_id) {
+        var req = {
+            method: 'DELETE',
+            url: '/reviews/:review_id/comments/:comment_id/likes',
+            headers: {
+              'Content-Type': 'application/json' 
+            },
+            data: {
+              review: review_id,
+              comment: comment_id
+            }
+          };
+          return $http(req)
+                    .catch(handleError)
+      }
 
       function handleResponse(response) {
         console.log(response)

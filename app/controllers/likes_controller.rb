@@ -4,8 +4,10 @@ class LikesController < ActionController::Base
 
     def create
         comment = Comment.find_by_id(params[:comment])
+        l = Like.where("user_id = ? AND comment_id =?", current_user.id,comment.id)
         like = comment.likes.build(user_id: current_user.id)
-          if like.save
+          if !l[0]
+              like.save
               render json: { status: 'ok'}
           else
               render json: { errors: like.errors.full_messages }, status: :unprocessable_entity
@@ -13,6 +15,7 @@ class LikesController < ActionController::Base
     end
 
     def destroy
+      binding.pry
       like = like.find_by_id(params[:like][:id])
             if like.user == current_user
             like.delete

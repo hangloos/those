@@ -19,6 +19,7 @@
         vm.loadMore = loadMore;
         vm.deleteComment = deleteComment;
         vm.createLike = createLike;
+        vm.likesClicked = [];
 
         vm.commentsLimit = 2;
         
@@ -119,7 +120,13 @@
         }
 
         function createLike(review_id, comment_id) {
+          //this.likesClicked.push({1,22})
           return LikesFactory.createLike(review_id,comment_id)
+                                  .then(getReviews)
+        }
+
+        function deleteLike(review_id,comment_id) {
+          return LikesFactory.deleteLike(review_id,comment_id)
                                   .then(getReviews)
         }
 
