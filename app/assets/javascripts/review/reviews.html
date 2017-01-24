@@ -6,14 +6,14 @@
         <div class="col-sm-12 col-md-6 col-lg-4">
             <img class="img-thumbnail" src="{{review.picture_url}}" alt="movie_poster"/>
                 <div class="commentText" ng-repeat="comment in review.comments | orderBy: '+':true | limitTo:vm.commentsLimit" id="white-text">
-                    <p class="">{{comment.comment}}-{{comment.user.username}}-{{comment.created_at | date: 'longDate'}}-{{comment.likes.length}} Likes </p><button  id="thumbnail-logo" ng-click="vm.createLike(review.id,comment.id)" ng-class="selectedLike ? 'btn btn-block btn-primary' : 'btn btn-block btn-primary active'"> <i class="fa fa-thumbs-up"></i>Like</button>
-                    <button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteComment(comment.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></div>
+                    <p class="">{{comment.comment}}-{{comment.user.username}}-{{comment.created_at | date: 'longDate'}}-{{comment.likes.length}} Likes </p><button  id="thumbnail-logo" ng-click="vm.createLike(review.id,comment.id)" ng-show="vm.user" ng-class="selectedLike ? 'btn btn-block btn-primary' : 'btn btn-block btn-primary active'"> <i class="fa fa-thumbs-up"></i>Like</button>
+                    <button type="button" class="btn btn-default btn-sm" ng-show="vm.user" ng-click="vm.deleteComment(comment.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></span></div>
 
                     <button ng-click='vm.loadMore(review.id)' ng-show="review.comments.length > 0">Load More</button>
                 
                 <div class="form-group">
-                <input class="form-control"  type="text" placeholder="Your comments" ng-model="vm.newComment"/>
-                <button class="btn btn-default" ng-click="vm.createComment(review.id)" >Add Comment</button>
+                <input class="form-control"  type="text" placeholder="Your comments" ng-show="vm.user" ng-model="vm.newComment"/>
+                <button class="btn btn-default" ng-click="vm.createComment(review.id)" ng-show="vm.user" >Add Comment</button>
                 </div>
         </div>
 
