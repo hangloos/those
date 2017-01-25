@@ -22,7 +22,7 @@
       }
 
       function getReview(id)  {
-        return $http.get('/reviews/' + id)
+        return $http.get('http://localhost:3000/reviews/' + id)
                   .then(handleResponse)
       }
 
@@ -47,7 +47,7 @@
          return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id)
                     .then(handleResponse)
                     .catch(handleError)
-        }
+      }
 
 
       function updateReview(id,rating) {
@@ -86,7 +86,6 @@
         alert("Successfully Deleted")
       }  
       function handleResponse(response) {
-        console.log(response)
         return response.data
 
       }

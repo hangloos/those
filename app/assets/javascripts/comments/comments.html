@@ -1,6 +1,8 @@
+<div ng-controller="ReviewController as vm"
 <h1>Your Comments</h1>
 <div ng-repeat="comment in hm.user.comments | orderBy: '+':true">
   <ul class="list-group">
-    <li class="list-group-item">{{comment.comment}} - Created On:{{comment.created_at | date: 'longDate'}} - about review {{comment.review.title}}</li>
+    <li class="list-group-item">{{comment.comment}} - Created On:{{comment.created_at | date: 'longDate'}} - about {{comment.review.title}} review</li><button class="glyphicon glyphicon-open" ui-sref="home.reviewShow({id: comment.review.id})" ng-click="vm.getReviewShow(comment.review.id)"></button>
   </ul>
+</div>
 </div>

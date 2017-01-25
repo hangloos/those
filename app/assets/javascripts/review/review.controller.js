@@ -6,7 +6,7 @@
         .module('those-movie-guys')
         .controller('ReviewController', ReviewController)
 
-   function ReviewController($location, ReviewsFactory, CommentsFactory, LikesFactory) {
+   function ReviewController($location, $stateParams, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
         var vm = this;
 
         vm.deleteReview = deleteReview;
@@ -19,6 +19,12 @@
         vm.loadMore = loadMore;
         vm.deleteComment = deleteComment;
         vm.createLike = createLike;
+        vm.getReviewShow = getReviewShow;
+        vm.setReview = setReview;
+        vm.createList = createList;
+        vm.showListForm = showListForm
+        vm.listFormValue = false;
+
 
         vm.commentsLimit = 2;
         
@@ -40,6 +46,16 @@
           vm.totalReviews = data.length
           vm.reviews = data
           return vm.reviews
+        }
+
+        function getReviewShow(id)  {
+            return ReviewsFactory.getReview(id)
+                                        .then(setReview)
+        }
+
+        function setReview(review)  {
+            vm.reviewData = review
+
         }
 
         function setNewReview(movie) {
@@ -79,10 +95,15 @@
          function reset() {
           vm.newReview = {}
           vm.editTrueValue = false
+          vm.newList = {}
          }
 
          function showEditForm() {
           vm.editTrueValue = true
+        }
+
+        function showListForm() {
+          vm.listFormValue = true
         }
 
         function deleteReview(id) {
@@ -103,7 +124,6 @@
         }
 
         function loadMore(id) {
-          debugger
           return CommentsFactory.getCommentsTotal(id)
                                   .then(setLimit)
         }
@@ -120,7 +140,6 @@
         }
 
         function createLike(review_id, comment_id) {
-          //this.likesClicked.push({1,22})
           return LikesFactory.createLike(review_id,comment_id)
                                   .then(getReviews)
         }
@@ -130,6 +149,10 @@
                                   .then(getReviews)
         }
 
+        function createList(id) {
+          return ListsFactory.createList(id, this.newList)
+                                .then(getReviews)
+        }
 
 
     }

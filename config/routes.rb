@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :lists, only: [:create, :destroy, :update, :index, :show]
+
   resources :users, only: [:show, :edit]
 end
