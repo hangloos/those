@@ -96,6 +96,7 @@
           vm.newReview = {}
           vm.editTrueValue = false
           vm.newList = {}
+          vm.listFormValue = false
          }
 
          function showEditForm() {
