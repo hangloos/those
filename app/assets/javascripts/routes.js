@@ -41,6 +41,11 @@
                     templateUrl: 'review/new.html',
                     controller: 'ReviewController as vm',
                 })
+                .state('home.comments', {
+                    url: 'comments',
+                    templateUrl: 'comments/comments.html',
+                    controller: 'CommentsController'
+                })
             $urlRouterProvider.otherwise('reviews')
         })
 
