@@ -1,6 +1,7 @@
 
 <div>
-    <input type="number" class="form-control" step="0.1" id="black-text" ng-model="vm.newReview.those_movie_guys_rating" placeholder="Rating 1-10 (Decimal)" required>
+    <input type="number" class="form-control" step="0.1" id="black-text" ng-model="vm.newReview.those_movie_guys_rating" placeholder="Rating 1-10 (Decimal)">
+    <input type="text_field" class="form-control" id="black-text" ng-model="vm.newReview.those_movie_guys_review" placeholder="Edit Review">
 </div>
   <button  type="submit" class="btn btn-default" ng-click="vm.editReviewRating(review.id)">Edit</button>
   <button type="reset" ng-click="vm.reset()" class="btn btn-default">Reset</button>

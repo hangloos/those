@@ -22,7 +22,7 @@
         <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
             <div class="caption">
               <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}</a></h3>
-              <p id="tmgRating">{{review.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()" ng-show="current_user.admin"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(review.id)" ng-show="current_user.admin"><span class="glyphicon glyphicon-edit"></span>Delete</button>
+              <p id="tmgRating">{{review.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span>Delete</button>
               
               <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
               
