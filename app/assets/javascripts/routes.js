@@ -41,7 +41,7 @@
                     templateUrl: 'review/new.html',
                     controller: 'ReviewController as vm',
                 })
-            $urlRouterProvider.otherwise('trending')
+            $urlRouterProvider.otherwise('reviews')
         })
 
 }());

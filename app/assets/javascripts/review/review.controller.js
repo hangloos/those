@@ -19,7 +19,6 @@
         vm.loadMore = loadMore;
         vm.deleteComment = deleteComment;
         vm.createLike = createLike;
-        vm.likesClicked = [];
 
         vm.commentsLimit = 2;
         

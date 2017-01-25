@@ -32,7 +32,7 @@
             <li><a ui-sref=".login" ng-show="!vm.user">Login</a></li>
             <li><a ui-sref=".register" ng-show="!vm.user">Register</a></li>
             <li><a ui-sref=".createReview" ng-show="vm.user.admin">Create Review</a></li>
-            <li><a href="#" ng-show="vm.user">Edit Profile</a></li>
+            <li><a href="/users/edit" ng-show="vm.user">Edit Profile</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#" ng-click="vm.logout()" ng-show="vm.user">Logout</a></li>
           </ul>
