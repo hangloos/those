@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'jwt'
 gem 'rack-cors'
 
+gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

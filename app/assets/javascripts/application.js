@@ -5,4 +5,5 @@
 //= require angular-rails-templates
 //= require bootstrap-sprockets
 //= require moment
+//= require semantic-ui
 //= require_tree .
