@@ -27,6 +27,7 @@
         vm.editComment = editComment;
         vm.editCommentToggle = false;
         vm.updateComment = updateComment;
+        vm.addToList = addToList;
 
 
         vm.commentsLimit = 2;
@@ -201,6 +202,12 @@
         function createList(id) {
           return ListsFactory.createList(id, this.newList)
                                 .then(getReviews)
+        }
+
+        function addToList(review_id) {
+          return ListsFactory.addToList(review_id, this.selectedList.id)
+                                  .then(getReviews)
+
         }
 
 

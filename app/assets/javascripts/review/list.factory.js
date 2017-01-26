@@ -6,7 +6,8 @@
     function ListsFactory($http)  {
 
       return  {
-        createList: createList
+        createList: createList,
+        addToList: addToList
         
       }
 
@@ -26,6 +27,23 @@
           return $http(req)
                     .catch(handleError)
 
+      }
+
+      function addToList(review_id, list_id)  {
+        var req = {
+          method: 'POST',
+          url: '/bookmark',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: {
+            review_id: review_id,
+            id: list_id
+          }
+        };
+        return $http(req)
+                      .then(alert("Successfully Added To List"))
+                      .catch(handleError)
       }
 
       function handleResponse(response) {
