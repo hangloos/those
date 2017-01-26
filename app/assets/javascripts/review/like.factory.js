@@ -25,7 +25,6 @@
           };
           return $http(req)
                     .catch(handleError)
-
       }
 
       function  deleteLike(review_id,comment_id) {

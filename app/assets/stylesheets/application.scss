@@ -18,7 +18,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-
+.active {
+  background-color: yellow;
+}
  .navbar {
      margin-bottom: 10;
  }

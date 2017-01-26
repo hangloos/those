@@ -105,6 +105,7 @@
         
           return ReviewsFactory.createReview(vm.newReview)
                               .then(setReviews)
+                              .then(location.hash = "#/reviews")
 
         }
 
