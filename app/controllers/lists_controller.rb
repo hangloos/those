@@ -26,11 +26,14 @@ class ListsController < ActionController::Base
     def bookmark
       list = List.find(params[:id])
       review = Review.find_by_id(params[:review_id])
-      list.reviews << review
-        if  list.save
-          render json: { status: 'ok'}
-        else
-           render json: { errors: like.errors.full_messages },  status: :unprocessable_entity
+        if  !list.reviews.include?(review)
+          list.reviews << review
+        end
+
+        if list.save
+           render json: { status: 'ok'}
+         else
+          render json: { errors: like.errors.full_messages },  status: :unprocessable_entity
         end
     end
 

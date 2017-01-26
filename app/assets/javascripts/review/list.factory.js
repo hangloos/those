@@ -43,6 +43,7 @@
         };
         return $http(req)
                       .then(alert("Successfully Added To List"))
+                      .then(location.reload())
                       .catch(handleError)
       }
 
