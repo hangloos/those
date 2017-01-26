@@ -6,7 +6,7 @@
         .module('those-movie-guys')
         .controller('ReviewController', ReviewController)
 
-   function ReviewController($location, $stateParams, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
+   function ReviewController($scope ,$location, $stateParams, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
         var vm = this;
 
         vm.deleteReview = deleteReview;
@@ -28,18 +28,35 @@
 
         vm.commentsLimit = 2;
         
+        // activate();
 
-        activate();
-
-        function activate() {
+        // function activate() {
+        //   getReviews();
+        // }
+        if (!$stateParams.reviewId) {
           getReviews();
+        }
+
+        if (!!$stateParams.reviewId) {
+          getReviewShow($stateParams.reviewId);
         }
 
         function getReviews() {
           vm.newComment = ""
           vm.newReview = ""
+          if (!!$stateParams.reviewId && vm.commentsLimit > 2) {
+            return ReviewsFactory.getReviews()
+                        .then(setReviews)
+          }
+
+          if (!!$stateParams.reviewId)  {
+            location.reload()
+          }
+
+          else {
           return ReviewsFactory.getReviews()
                         .then(setReviews)
+          }
         }
 
         function setReviews(data) {

@@ -26,8 +26,13 @@
                     templateUrl: 'review/reviews.html',
                     controller: 'ReviewController as vm'
                 })
+                .state('home.createReview', {
+                    url: 'reviews/create',
+                    templateUrl: 'review/new.html',
+                    controller: 'ReviewController as vm'
+                })
                 .state('home.reviewShow', {
-                    url: 'reviews/:id',
+                    url: 'reviews/:reviewId',
                     templateUrl: 'review/reviewShow.html',
                     controller: 'ReviewController as vm'
                 })
@@ -41,15 +46,10 @@
                     templateUrl: 'home/about.html',
                     controller: 'HomeController as vm'
                 })
-                .state('home.createReview', {
-                    url: 'reviews/create',
-                    templateUrl: 'review/new.html',
-                    controller: 'ReviewController as vm'
-                })
                 .state('home.comments', {
                     url: 'comments',
                     templateUrl: 'comments/comments.html',
-                    controller: 'ReviewController'
+                    controller: 'ReviewController as vm'
                 })
             $urlRouterProvider.otherwise('reviews')
         })
