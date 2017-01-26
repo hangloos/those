@@ -120,12 +120,24 @@
          }
 
          function showEditForm() {
+           if (vm.editTrueValue) {
+            vm.editTrueValue = false
+          }
+
+          else  {
           vm.editTrueValue = true
-        }
+          }
+
+          }
 
         function showListForm() {
+          if (vm.listFormValue) {
+            vm.listFormValue = false
+          }
+          else  {
           vm.listFormValue = true
-        }
+          }
+          } 
 
         function deleteReview(id) {
           return ReviewsFactory.deleteReview(id)
