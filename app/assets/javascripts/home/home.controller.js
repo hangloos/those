@@ -36,8 +36,15 @@
                   location.reload()
                   $location.path('/reviews')
                 }, function(error)  {
-                  $rootScope.errors = error.data.errors
-                  $rootScope.error = error.data.error
+                  if (error.data.error) {
+                    vm.error = error.data.error
+                    alert(error.data.error)
+                  }
+                  else  {
+                    vm.error = error.data.errors
+                    alert(error.data.errors)
+                  }
+
                 });
           }
 
@@ -57,8 +64,14 @@
                       location.reload()
                       $location.path('/reviews')
                 }, function(error)  {
-                  $rootScope.errors = error.data.errors
-                  $rootScope.error = error.data.error
+                  if (error.data.error) {
+                    vm.error = error.data.error
+                    alert(error.data.error)
+                  }
+                  else  {
+                    vm.error = error.data.errors
+                    alert(error.data.errors)
+                  }
             });
         }
 
