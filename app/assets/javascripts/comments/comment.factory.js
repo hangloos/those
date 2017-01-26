@@ -8,7 +8,8 @@
       return  {
         createComment: createComment,
         getCommentsTotal: getCommentsTotal,
-        deleteComment: deleteComment
+        deleteComment: deleteComment,
+        updateComment: updateComment
         
       }
 
@@ -48,6 +49,22 @@
           };
           return $http(req)
                     .catch(handleError)
+      }
+
+      function updateComment(comment_id, review_id, comment) {
+        var req = {
+          method: 'PATCH',
+          url: '/reviews/' + review_id+ '/comments/' + comment_id,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: {
+            comment: comment,
+            id: comment_id
+          }
+        };
+        return $http(req)
+                .catch(handleError)
       }
 
       function handleResponse(response) {

@@ -24,6 +24,9 @@
         vm.createList = createList;
         vm.showListForm = showListForm
         vm.listFormValue = false;
+        vm.editComment = editComment;
+        vm.editCommentToggle = false;
+        vm.updateComment = updateComment;
 
 
         vm.commentsLimit = 2;
@@ -155,6 +158,22 @@
         function deleteComment(comment_id)  {
           return CommentsFactory.deleteComment(comment_id)
                                   .then(getReviews)
+        }
+
+        function editComment()  {
+          if (vm.editCommentToggle) {
+            vm.editCommentToggle = false
+          }
+
+          else  {
+          vm.editCommentToggle = true
+          }
+
+        }
+
+        function updateComment(comment_id, review_id)  {
+          return CommentsFactory.updateComment(comment_id, review_id, this.newComment)
+                                    .then(getReviews)
         }
 
         function createLike(review_id, comment_id) {
