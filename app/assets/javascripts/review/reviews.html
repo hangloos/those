@@ -1,7 +1,7 @@
 <input type="text" class="form-control" placeholder="Search By Title" ng-model="searchBox.title">
 <input type="text" class="form-control" placeholder="Search By Rating" ng-model="searchBox.those_movie_guys_rating">
 
-<a href="#" ng-click="vm.showListForm()">Create List</a>
+<a href="#" ng-click="vm.showListForm()" ng-show="hm.user">Create List</a>
 <div ng-show="vm.listFormValue" ng-include="'review/createListForm.html'"></div>
 
 <br></br>
@@ -30,9 +30,9 @@
 
         <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
             <div class="caption">
-              <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}</a></h3>
+              <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}-{{review.viewing_platform}}</a></h3>
 
-              <form class=form-group>
+              <form class=form-group ng-show="hm.user">
                 <select name="lists" class="form-control" id="dropdown-small" ng-options="list.name for list in hm.user.lists" ng-model="vm.selectedList">
                 </select>
                  <input type="submit" value="Add to List" ng-click="vm.addToList(review.id)">
