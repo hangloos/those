@@ -1,0 +1,8 @@
+<h1>Your Lists</h1>
+<ul class="list-group" ng-repeat="list in hm.user.lists | orderBy: '+':true">
+    <li class="list-group-item">{{list.name}}
+        <ul class="list-group" ng-repeat="review in list.reviews">
+            <li class="list-group-item">{{review.title}}-{{review.those_movie_guys_rating}}-{{review.those_movie_guys_review}}-{{review.viewing_platform}}</li>
+        </ul>
+    </li>
+</ul>
