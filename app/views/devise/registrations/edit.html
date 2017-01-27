@@ -1,0 +1,41 @@
+
+<h2>Edit User Profile</h2>
+
+<form class="edit_user ng-pristine ng-valid" id="edit_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><input type="hidden" name="authenticity_token" value="EuBTq0wmTpxW5Mf5xX0gVeBgku4+w8uO66xfXxfXOB5QVQJgamI2XtJZ1awiA8DYg6wgmklfEutK1ym8AsAljQ==">
+  
+  <div class="field">
+    <label for="user_email">Email</label><br>
+    <input autofocus="autofocus" type="email" name="user[email]" id="user_email">
+  </div>
+
+
+  <div class="field">
+    <label for="user_password">Password</label> <i>(leave blank if you don't want to change it)</i><br>
+    <input autocomplete="off" type="password" name="user[password]" id="user_password">
+      <br>
+      <em>6 characters minimum</em>
+  </div>
+
+  <div class="field">
+    <label for="user_password_confirmation">Password confirmation</label><br>
+    <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+  </div>
+
+  <div class="field">
+    <label for="user_current_password">Current password</label> <i>(we need your current password to confirm your changes)</i><br>
+    <input autocomplete="off" type="password" name="user[current_password]" id="user_current_password">
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Update" data-disable-with="Update">
+  </div>
+</form>
+<h3>Cancel my account</h3>
+
+<p>Unhappy? </p><form class="button_to ng-pristine ng-valid" method="post" action="/users"><input type="hidden" name="_method" value="delete"><input data-confirm="Are you sure?" type="submit" value="Cancel my account"><input type="hidden" name="authenticity_token" value="LWZOujGkaTV57xaFjeic0+Bx3kQA/0Q0/4wFnMUsstfntJUptYIxam2BHrVVE8UD7LK1uic3L2iDeVhZm/GcwA=="></form><p></p>
+
+<a href="http://localhost:3000/">Back</a>
+
+  
+
+</body></html>

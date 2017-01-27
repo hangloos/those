@@ -21,6 +21,11 @@
                     templateUrl: 'home/register.html',
                     controller: 'HomeController as vm'
                 })
+                .state('home.editProfile', {
+                    url: 'user/edit',
+                    templateUrl: 'home/edit_profile.html',
+                    controller: 'HomeController as vm'
+                })
                 .state('home.reviews',  {
                     url: 'reviews',
                     templateUrl: 'review/reviews.html',
