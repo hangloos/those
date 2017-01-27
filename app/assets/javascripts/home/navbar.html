@@ -1,42 +1,29 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" ui-sref=".popular">Trending</a>
-    </div>
-  
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li ><a ui-sref=".reviews" >Reviews<span ></span></a></li>
-        <li ><a ui-sref=".about" >About<span ></span></a></li>
-        <li class="dropdown">
-          <a  class="dropdown-toggle" ng-show="vm.user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Activity<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#" ui-sref=".lists">Your Lists</a></li>
-            <li><a href="#" ui-sref=".comments">Your Comments</a></li>
-          </ul>
-        </li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a ui-sref=".login" ng-show="!vm.user">Login</a></li>
-            <li><a ui-sref=".register" ng-show="!vm.user">Register</a></li>
-            <li><a ui-sref=".createReview" ng-show="vm.user.admin">Create Review</a></li>
-            <li><a href="/users/edit" ng-show="vm.user">Edit Profile</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#" ng-click="vm.logout()" ng-show="vm.user">Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+<!-- Non User -->
+<div class="ui four item menu" ng-show="!hm.user">
+  <a class="item" ui-sref=".trending">Trending</a>
+  <a class="item" ui-sref=".reviews">Reviews</a>
+  <a class="item" ui-sref=".login">Login</a>
+  <a class="item" ui-sref=".register">Register</a>
+
+</div>
+
+<!-- User -->
+<div class="ui six item menu" ng-show="hm.user && !hm.user.admin">
+  <a class="item" ui-sref=".popular">Trending</a>
+  <a class="item" ui-sref=".reviews">Reviews</a>
+  <a class="item" ui-sref=".lists">My Lists</a>
+  <a class="item" ui-sref=".comments">My Comments</a>
+  <a class="item">Edit Profile</a>
+  <a class="item" ng-click="vm.logout()">Logout</a>
+</div>
+
+<!-- Admin -->
+<div class="ui seven item menu" ng-show="hm.user && hm.user.admin">
+  <a class="item" ui-sref=".popular">Trending</a>
+  <a class="item" ui-sref=".reviews">Reviews</a>
+  <a class="item" ui-sref=".lists">My Lists</a>
+  <a class="item" ui-sref=".comments">My Comments</a>
+  <a class="item" ui-sref=".createReview">Create Review</a>
+  <a class="item">Edit Profile</a>
+  <a class="item" ng-click="vm.logout()">Logout</a>
+</div>
