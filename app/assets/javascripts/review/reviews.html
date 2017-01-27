@@ -40,43 +40,13 @@
           <p>Writers: {{review.writer}}</p>
           <p>Runtime: {{review.runtime}}</p>
       </div>
+      <!-- Comments of Reviews -->
+      <div ng-include="'review/reviews_comments.html'"></div>
     </div>
     <!-- Edit Review Form - Admin -->
     <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
   
   </div>
 </div>
-
-
-
-
-
-<!-- <div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <img class="img-thumbnail" src="{{review.picture_url}}" alt="movie_poster"/>
-                <div class="commentText" ng-repeat="comment in review.comments | orderBy: 'comments.created_at':true | limitTo:vm.commentsLimit">
-                    <p id="white-text">{{comment.comment}}-{{comment.user.username}}-{{comment.created_at | date: 'longDate'}}-{{comment.likes.length}} Likes </p><button  id="thumbnail-logo" class="glyphicon glyphicon-thumbs-up" ng-click="vm.createLike(review.id,comment.id)" ng-show="hm.user.email" name="like"></button>
-                    <button type="button" ng-show="hm.user.id == comment.user.id" ng-click="vm.deleteComment(comment.id)" class="glyphicon glyphicon-remove"></button>
-                    <button type="button" ng-show="hm.user.id == comment.user.id" ng-click="vm.editComment()" class="glyphicon glyphicon-edit"></button>
-
-                    <div class="form-group" ng-show="vm.editCommentToggle">
-                    <input class="form-control"  type="text" placeholder="{{comment.comment}}" ng-model="vm.newComment"/>
-                    <button type="submit" class="btn btn-default" ng-click="vm.updateComment(comment.id, comment.review_id)">Edit Comment</button>
-                    </div></div>
-
-
-                    <button ng-click='vm.loadMore(review.id)' ng-show="review.comments.length > 0">Load More</button>
-                
-                <div class="form-group">
-                <input class="form-control"  type="text" placeholder="Your comments" ng-show="hm.user.email" ng-model="vm.newComment"/>
-                <button class="btn btn-default" ng-click="vm.createComment(review.id)" ng-show="hm.user.email">Add Comment</button>
-                </div>
-        </div>
-
-              <p id="tmgRating">{{review.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span>Delete</button>
-              
-         
-    
-</div> --> -->
 
 

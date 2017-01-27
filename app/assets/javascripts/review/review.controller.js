@@ -28,6 +28,7 @@
         vm.editCommentToggle = false;
         vm.updateComment = updateComment;
         vm.addToList = addToList;
+        vm.hideComments = hideComments;
 
 
         vm.commentsLimit = 2;
@@ -161,6 +162,10 @@
         function loadMore(id) {
           return CommentsFactory.getCommentsTotal(id)
                                   .then(setLimit)
+        }
+
+        function hideComments() {
+          vm.commentsLimit = 2;
         }
 
         function setLimit(review) {
