@@ -1,4 +1,7 @@
 <button class="ui right floated button" ng-show="hm.user">Create List</button>
+<select class="ui dropdown" ng-options="list.name for list in hm.user.lists" ng-model="vm.selectedList" ng-show="hm.user">
+  <option ng-selected="true" value="">Select One Of Your Lists</option>
+</select>
 <div class="ui search">
 <input class="prompt" type="text" placeholder="Search By Title.." ng-model="searchBox.title">
 <input class="prompt" type="text" placeholder="Search By Rating.." ng-model="searchBox.those_movie_guys_rating">
@@ -6,26 +9,49 @@
 
 <br></br>
 
+<div class="ui items">
+  <div class="item" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
+    <!-- Image -->
+    <div class="ui medium image">
+      <div class="ui blue ribbon label large"><i class="thumbs outline up icon"></i><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
+      <a class="ui blue right corner label" ng-click="vm.addToList(review.id)"><i class="bookmark icon"></i></a>
+      <img src="{{review.picture_url}}">
+    </div>
+    
+    <div class="content">
+      <div class="header">{{review.title}}</div>
+      <div class="meta">
+        <span class="location">{{review.viewing_platform}}</span>
+      </div>
+      <div class="description">
+        <p>{{review.those_movie_guys_review}}</p>
+      </div>
+      <div class="meta">
+        <img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
+        <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank"><u>{{review.imdb_rating}}</u></a>
+        <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{review.tomato_url}}" target="_blank"><u>Critics - {{review.tomato_critics}}%</u></a>
+        <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
+        <a href="{{review.tomato_url}}" target="_blank"><u>Users - {{review.tomato_user}}%</u></a>
+      </div>
+      <div class="meta">
+          <p>Actors: {{review.actors}}</p>
+          <p>Genres: {{review.genres}}</p>
+          <p>Directors: {{review.director}}</p>
+          <p>Writers: {{review.writer}}</p>
+          <p>Runtime: {{review.runtime}}</p>
+      </div>
+    </div>
+    <!-- Edit Review Form - Admin -->
+    <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
+  
+  </div>
+</div>
 
 
 
 
 
-
-
-
-
-
-
-<!-- <input type="text" class="form-control" placeholder="Search By Title" ng-model="searchBox.title">
-<input type="text" class="form-control" placeholder="Search By Rating" ng-model="searchBox.those_movie_guys_rating">
-
-<a href="#" ng-click="vm.showListForm()" ng-show="hm.user">Create List</a>
-<div ng-show="vm.listFormValue" ng-include="'review/createListForm.html'"></div>
-
-<br></br>
-
-<div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
+<!-- <div class="container" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <img class="img-thumbnail" src="{{review.picture_url}}" alt="movie_poster"/>
                 <div class="commentText" ng-repeat="comment in review.comments | orderBy: 'comments.created_at':true | limitTo:vm.commentsLimit">
@@ -47,39 +73,10 @@
                 </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
-            <div class="caption">
-              <h3><a href="http://imdb.com/title/{{review.imdb_id}}" target="_blank">{{review.title}}-{{review.viewing_platform}}</a></h3>
-
-              <form class=form-group ng-show="hm.user">
-                <select name="lists" class="form-control" id="dropdown-small" ng-options="list.name for list in hm.user.lists" ng-model="vm.selectedList">
-                </select>
-                 <input type="submit" value="Add to List" ng-click="vm.addToList(review.id)">
-              </form>
-
               <p id="tmgRating">{{review.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span>Delete</button>
               
-              <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
-              
-              <p>Those Movie Guys Review: {{review.those_movie_guys_review}}</p>
-              <p><img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
-              <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank">{{review.imdb_rating}}</a>  
-              <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{review.tomato_url}}" target="_blank">Critics - {{review.tomato_critics}}%</a>
-              <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
-              <a href="{{review.tomato_url}}" target="_blank">Users - {{review.tomato_user}}%</a></p>
-            </div>            
-        </div>
          
-         <div class="col-sm-12 col-md-6 col-lg-12">
-            <div class="caption" id="white-text">
-              <h3>Details</h3>
-              <p>Actors: {{review.actors}}</p>
-              <p>Genres: {{review.genres}}</p>
-              <p>Directors: {{review.director}}</p>
-              <p>Writers: {{review.writer}}</p>
-              <p>Runtime: {{review.runtime}}</p>
-            </div>            
-        </div>
-</div> -->
+    
+</div> --> -->
 
 
