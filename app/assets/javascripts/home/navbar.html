@@ -1,28 +1,28 @@
 <!-- Non User -->
-<div class="ui four item menu" ng-show="!hm.user">
-  <a class="item" ui-sref=".popular">Trending</a>
-  <a class="item" ui-sref=".reviews">Reviews</a>
-  <a class="item" ui-sref=".login">Login</a>
-  <a class="item" ui-sref=".register">Register</a>
+<div class="ui four item inverted menu" ng-show="!hm.user">
+  <a class="item" ui-sref-active="active" ui-sref=".popular">Trending</a>
+  <a class="item" ui-sref-active="active" ui-sref=".reviews">Reviews</a>
+  <a class="item" ui-sref-active="active" ui-sref=".login">Login</a>
+  <a class="item" ui-sref-active="active" ui-sref=".register">Register</a>
 </div>
 
 <!-- User -->
-<div class="ui six item menu" ng-show="hm.user && !hm.user.admin">
-  <a class="item" ui-sref=".popular">Trending</a>
-  <a class="item" ui-sref=".reviews">Reviews</a>
-  <a class="item" ui-sref=".lists">My Lists</a>
-  <a class="item" ui-sref=".comments">My Comments</a>
-  <a class="item" ui-sref=".editProfile">Edit Profile</a>
-  <a class="item" ng-click="vm.logout()">Logout</a>
+<div class="ui six item inverted menu" ng-show="hm.user && !hm.user.admin">
+  <a class="item" ui-sref-active="active" ui-sref=".popular">Trending</a>
+  <a class="item" ui-sref-active="active" ui-sref=".reviews">Reviews</a>
+  <a class="item" ui-sref-active="active" ui-sref=".lists">My Lists</a>
+  <a class="item" ui-sref-active="active" ui-sref=".comments">My Comments</a>
+  <a class="item" ui-sref-active="active" ui-sref=".editProfile">Edit Profile</a>
+  <a class="item" ui-sref-active="active" ng-click="vm.logout()">Logout</a>
 </div>
 
 <!-- Admin -->
-<div class="ui seven item menu" ng-show="hm.user && hm.user.admin">
-  <a class="item" ui-sref=".popular">Trending</a>
-  <a class="item" ui-sref=".reviews">Reviews</a>
-  <a class="item" ui-sref=".lists">My Lists</a>
-  <a class="item" ui-sref=".comments">My Comments</a>
-  <a class="item" ui-sref=".createReview">Create Review</a>
-  <a class="item" ui-sref=".editProfile">Edit Profile</a>
-  <a class="item" ng-click="vm.logout()">Logout</a>
+<div class="ui seven item inverted menu" ng-show="hm.user && hm.user.admin">
+  <a class="item" ui-sref-active="active" ui-sref=".popular">Trending</a>
+  <a class="item" ui-sref-active="active" ui-sref=".reviews">Reviews</a>
+  <a class="item" ui-sref-active="active" ui-sref=".lists">My Lists</a>
+  <a class="item" ui-sref-active="active" ui-sref=".comments">My Comments</a>
+  <a class="item" ui-sref-active="active" ui-sref=".createReview">Create Review</a>
+  <a class="item" ui-sref-active="active" ui-sref=".editProfile">Edit Profile</a>
+  <a class="item" ui-sref-active="active" ng-click="vm.logout()">Logout</a>
 </div>
