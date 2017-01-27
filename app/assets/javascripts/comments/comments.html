@@ -1,8 +1,11 @@
-<div>
-  <h1>Your Comments</h1>
-  <div ng-repeat="comment in hm.user.comments | orderBy: '+':true">
-    <ul class="list-group">
-      <li class="list-group-item">{{comment.comment}} - Created On:{{comment.created_at | date: 'longDate'}} - about {{comment.review.title}} review</li><button class="glyphicon glyphicon-open" ui-sref="home.reviewShow({ reviewId: comment.review.id})"></button>
-    </ul>
+<h1>Your Comments</h1>
+<div class="ui list" ng-repeat="comment in hm.user.comments | orderBy: '+':true">
+  <div class="item">
+    <img class="ui avatar image" src="{{comment.review.picture_url}}">
+    <div class="content">
+      <p class="header">{{comment.comment}}</p>
+      <div class="description"> <b>Review Title: {{comment.review.title}} - </b>Created On:{{comment.created_at | date: 'longDate'}}</div>
+      <a style="color:black" ui-sref="home.reviewShow({ reviewId: comment.review.id})"><i class="expand icon"></i></a>
+    </div>
   </div>
 </div>
