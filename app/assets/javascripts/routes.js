@@ -41,11 +41,6 @@
                     templateUrl: 'popular/popular.html',
                     controller: 'PopularController as vm'
                 })
-                .state('home.about',    {
-                    url: 'about',
-                    templateUrl: 'home/about.html',
-                    controller: 'HomeController as vm'
-                })
                 .state('home.comments', {
                     url: 'comments',
                     templateUrl: 'comments/comments.html',
