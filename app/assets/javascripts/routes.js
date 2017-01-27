@@ -11,14 +11,14 @@
                     templateUrl: 'home/home.html',
                     controller: 'HomeController as vm'
                 })
-                .state('home.register', {
-                    url: 'register',
-                    templateUrl: 'home/register.html',
-                    controller: 'HomeController as vm'
-                })
                 .state('home.login', {
                     url: 'login',
                     templateUrl: 'home/login.html',
+                    controller: 'HomeController as vm'
+                })
+                .state('home.register', {
+                    url: 'register',
+                    templateUrl: 'home/register.html',
                     controller: 'HomeController as vm'
                 })
                 .state('home.reviews',  {
