@@ -107,6 +107,7 @@
           return ReviewsFactory.createReview(vm.newReview)
                               .then(setReviews)
                               .then(location.hash = "#/reviews")
+                              .then(location.reload())
 
         }
 
@@ -144,6 +145,7 @@
 
         function deleteReview(id) {
           return ReviewsFactory.deleteReview(id)
+                            .then(location.hash = "#/reviews")
                             .then(getReviews)
           
         }

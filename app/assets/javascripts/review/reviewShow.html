@@ -1,41 +1,90 @@
-<div class="col-sm-12 col-md-6 col-lg-4">
-            <img class="img-thumbnail" src="{{vm.reviewData.picture_url}}" alt="movie_poster"/>
-                <div class="commentText" ng-repeat="comment in vm.reviewData.comments | orderBy: '+':true | limitTo:vm.commentsLimit" id="white-text">
-                    <p class="">{{comment.comment}}-{{comment.user.username}}-{{comment.created_at | date: 'longDate'}}-{{comment.likes.length}} Likes </p><button  id="thumbnail-logo" class="glyphicon glyphicon-thumbs-up" ng-click="vm.createLike(review.id,comment.id)" ng-show="hm.user.email" name="like"></button>
-                    <button type="button" ng-show="hm.user.id == comment.user.id" ng-click="vm.deleteComment(comment.id)" class="glyphicon glyphicon-remove"></button></span></div>
+<button class="ui right floated button" ng-show="hm.user">Create List</button>
+<select class="ui dropdown" ng-options="list.name for list in hm.user.lists" ng-model="vm.selectedList" ng-show="hm.user && hm.user.lists.length > 0">
+  <option ng-selected="true" value="">Select One Of Your Lists</option>
+</select>
+<div class="ui search">
+<input class="prompt" type="text" placeholder="Search By Title.." ng-model="searchBox.title">
+<input class="prompt" type="text" placeholder="Search By Rating.." ng-model="searchBox.those_movie_guys_rating">
+</div>
 
-                    <button ng-click='vm.loadMore(vm.reviewData.id)' ng-show="vm.reviewData.comments.length > 0">Load More</button>
-                
-                <div class="form-group">
-                <input class="form-control"  type="text" placeholder="Your comments" ng-show="hm.user.email" ng-model="vm.newComment"/>
-                <button class="btn btn-default" ng-click="vm.createComment(vm.reviewData.id)" ng-show="hm.user.email">Add Comment</button>
-                </div>
+<br></br>
+
+<div class="ui items">
+  <div class="item">
+    <!-- Image -->
+    <div class="ui medium image">
+      <div class="ui blue ribbon label large"><i class="thumbs outline up icon"></i><h2>{{vm.reviewData.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"></i></div>
+      <a class="ui blue right corner label" ng-click="vm.addToList(vm.reviewData.id)" ng-show="hm.user.lists.length > 0"><i class="bookmark icon"></i></a>
+      <img src="{{vm.reviewData.picture_url}}">
+    </div>
+    
+    <div class="content">
+      <div class="header">{{vm.reviewData.title}}</div>
+      <div class="meta">
+        <span class="location">{{vm.reviewData.viewing_platform}}</span>
+      </div>
+      <div class="description">
+        <p>{{vm.reviewData.those_movie_guys_review}}</p>
+      </div>
+      <div class="meta">
+        <img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
+        <a href="http://imdb.com/title/{{vm.reviewData.imdb_id }}" target="_blank"><u>{{vm.reviewData.imdb_rating}}</u></a>
+        <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{vm.reviewData.tomato_url}}" target="_blank"><u>Critics - {{vm.reviewData.tomato_critics}}%</u></a>
+        <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
+        <a href="{{vm.reviewData.tomato_url}}" target="_blank"><u>Users - {{vm.reviewData.tomato_user}}%</u></a>
+      </div>
+      <div class="meta">
+          <p>Actors: {{vm.reviewData.actors}}</p>
+          <p>Genres: {{vm.reviewData.genres}}</p>
+          <p>Directors: {{vm.reviewData.director}}</p>
+          <p>Writers: {{vm.reviewData.writer}}</p>
+          <p>Runtime: {{vm.reviewData.runtime}}</p>
+      </div>
+      
+
+      <div class="ui comments">
+        <h3 class="ui dividing header">Comments</h3>
+        <div class="comment" ng-repeat="comment in vm.reviewData.comments | orderBy: 'comments.created_at':true | limitTo:vm.commentsLimit">
+          <div class="content">
+            <a class="author">{{comment.user.username}}</a>
+            <div class="metadata">
+              <span class="date">
+              {{comment.created_at | date: 'longDate'}} 
+              <a style="color:blue" ng-click="vm.createLike(review.id,comment.id)" ng-show="hm.user.email" class="item"><i class="like icon"></i> Like<div class="ui red label">{{comment.likes.length}}</div></a>
+              <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-click="vm.editComment()"><i class="edit icon"></i></a>
+              <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-really-message="Are you sure you want to delete this comment?" ng-really-click="vm.deleteComment(comment.id)"><i class="remove icon"></i></a>
+              </span>
+            </div>
+            <div class="text">
+              {{comment.comment}}
+            </div>
+          </div>
+          <!-- Edit Comment -->
+          <div ng-include="'review/reviews_edit_comment.html'"></div>
+        </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-12" id="white-text">
-            <div class="caption">
-              <h3><a href="http://imdb.com/title/{{vm.reviewData.imdb_id}}" target="_blank">{{vm.reviewData.title}}-{{vm.reviewData.viewing_platform}}</a></h3>
-              <p id="tmgRating">{{vm.reviewData.those_movie_guys_rating}}</p><button type="button" class="btn btn-default btn-sm" ng-click="vm.showEditForm()" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span> Edit</button><button type="button" class="btn btn-default btn-sm" ng-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"><span class="glyphicon glyphicon-edit"></span>Delete</button>
-              
-              <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
-              
-              <p>Those Movie Guys Review: {{vm.reviewData.those_movie_guys_review}}</p>
-              <p><img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
-              <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank">{{vm.reviewData.imdb_rating}}</a>  
-              <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{review.tomato_url}}" target="_blank">Critics - {{vm.reviewData.tomato_critics}}%</a>
-              <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
-              <a href="{{review.tomato_url}}" target="_blank">Users - {{vm.reviewData.tomato_user}}%</a></p>
-            </div>            
-        </div>
-         
-         <div class="col-sm-12 col-md-6 col-lg-12">
-            <div class="caption" id="white-text">
-              <h3>Details</h3>
-              <p>Actors: {{vm.reviewData.actors}}</p>
-              <p>Genres: {{vm.reviewData.genres}}</p>
-              <p>Directors: {{vm.reviewData.director}}</p>
-              <p>Writers: {{vm.reviewData.writer}}</p>
-              <p>Runtime: {{vm.reviewData.runtime}}</p>
-            </div>            
-        </div>
+        
+        <form class="ui reply form">
+          <div class="field">
+            <textarea ng-show="hm.user.email" ng-model="vm.newComment"></textarea><grammarly-btn><div style="z-index: 2; opacity: 1; transform: translate(619px, 137px);" class="_e725ae-textarea_btn _e725ae-not_focused" data-grammarly-reactid=".0"><div class="_e725ae-transform_wrap" data-grammarly-reactid=".0.0"><div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".0.0.0">&nbsp;</div></div></div></grammarly-btn>
+          </div>
+          <div class="ui blue labeled submit icon button" ng-click="vm.createComment(review.id)" ng-show="hm.user.email">
+            <i class="icon edit"></i> Add Reply
+          </div>
+          <div class="ui blue labeled submit icon button" ng-click='vm.loadMore(review.id)' ng-if="review.comments.length > vm.commentsLimit">
+            <i class="toggle off icon"></i>
+            Load Additional {{(review.comments.length - vm.commentsLimit)}} Comments
+          </div>
+          <div class="ui blue labeled submit icon button" ng-click='vm.hideComments()' ng-show="review.comments.length <= vm.commentsLimit">
+            <i class="toggle on icon"></i>
+            Hide Additional {{(review.comments.length - 2)}} Comments
+          </div>
+
+  </form>
+    </div>
+    <!-- Edit Review Form - Admin -->
+    <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
+  
+  </div>
 </div>
