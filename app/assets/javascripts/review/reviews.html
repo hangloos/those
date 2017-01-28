@@ -22,7 +22,7 @@
       <div class="header">{{review.title}}</div>
         <!-- review likes -->
         <div class="ui labeled button" tabindex="0">
-          <div class="ui toggle button" ng-click="vm.createReviewLike(review.id,hm.user.id)"><i class="heart icon"></i></div>
+          <div class="ui toggle button" ng-click="vm.createReviewLike(review.id,hm.user.id)"><i class="heart icon link" data-content="Hello. This is an inverted popup" data-variation="inverted"></i></div>
           <p class="ui basic red left pointing label">{{review.review_likes.length}}</p>
         </div>
       <div class="meta">
