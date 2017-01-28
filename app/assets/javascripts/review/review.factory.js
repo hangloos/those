@@ -11,7 +11,8 @@
         createReview: createReview,
         updateReview: updateReview,
         deleteReview: deleteReview,
-        getInformation: getInformation
+        getInformation: getInformation,
+        createReviewLike: createReviewLike
       }
 
       function getReviews() {
@@ -47,6 +48,22 @@
          return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id)
                     .then(handleResponse)
                     .catch(handleError)
+      }
+
+      function createReviewLike(review_id, user_id) {
+        var req = {
+          method: 'POST',
+          url: '/reviews/:review_id/review_likes',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: {
+            review_id: review_id,
+            user_id: user_id
+          }
+        };
+        return $http(req)
+                  .catch(handleError)
       }
 
 

@@ -3,7 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
     has_many :lists
     has_many :reviews
-    #has_many :reviews
     has_many :comments
     has_many :likes, through: :comments
 

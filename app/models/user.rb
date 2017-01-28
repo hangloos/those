@@ -9,4 +9,5 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :comments
     has_many :likes, through: :comments
+    has_many :review_likes
 end
