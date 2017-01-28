@@ -29,7 +29,6 @@
         vm.updateComment = updateComment;
         vm.addToList = addToList;
         vm.hideComments = hideComments;
-        vm.toggle = toggle;
         vm.createReviewLike = createReviewLike
 
 
@@ -48,9 +47,9 @@
           getReviewShow($stateParams.reviewId);
         }
 
-        function toggle() {
-          $('.ui.button.toggle').state()
-        }
+        // function toggle() {
+        //   $('.ui.button.toggle').state()
+        // }
 
         function createReviewLike(review_id, user_id) {
             return ReviewsFactory.createReviewLike(review_id,user_id)

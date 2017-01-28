@@ -4,25 +4,19 @@ class ReviewLikesController < ActionController::Base
 
     def create
         review = Review.find_by_id(params[:review_like][:review_id])
-        review = review.review_likes.find_or_create_by(user_id: current_user.id)
+        if like = review.review_likes.find_by(user_id: current_user.id)
+            like.delete
+            review.save
+        else
+            review = review.review_likes.create(user_id: current_user.id)
+        end
+
         if review.save
             render json: { status: 'ok'}
         else
             render json: { errors: like.errors.full_messages }, status: :unprocessable_entity
         end
     end
-
-    def destroy
-      binding.pry
-      like = like.find_by_id(params[:like][:id])
-            if like.user == current_user
-            like.delete
-            render json: { status: 'ok'}
-            else
-            render json: { errors: like.errors.full_messages }, status: :unprocessable_entity
-            end
-    end
-
 
 
 end
