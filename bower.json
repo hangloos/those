@@ -7,7 +7,8 @@
       "angular-devise": "latest",
       "moment": "latest",
       "bootstrap": "latest",
-      "angular-semantic-ui": "latest"
+      "angular-semantic": "latest",
+      "semantic-ui": "latest"
     }
   }
 }
