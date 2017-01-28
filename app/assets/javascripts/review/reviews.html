@@ -10,7 +10,7 @@
 <br></br>
 
 <div class="ui items">
-  <div class="item" ng-repeat="review in vm.reviews | orderBy: '+':true | filter:searchBox">
+  <div class="item" ng-repeat="review in vm.reviews | orderBy: 'review.created_at' | filter:searchBox | limitTo:10">
     <!-- Image -->
     <div class="ui medium image">
       <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
@@ -23,7 +23,7 @@
         <!-- review likes -->
         <div class="ui labeled button" tabindex="0">
           <div class="ui toggle button" ng-click="vm.toggle(); vm.createReviewLike(review.id, hm.user.id)"><i class="heart icon"></i></div>
-          <a class="ui basic red left pointing label">{{review.review_likes}}</a>
+          <p class="ui basic red left pointing label">{{review.review_likes}}</p>
         </div>
       <div class="meta">
         <span class="location">{{review.viewing_platform}}</span>

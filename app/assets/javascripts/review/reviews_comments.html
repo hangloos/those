@@ -1,6 +1,6 @@
 <div class="ui comments">
   <h3 class="ui dividing header">Comments</h3>
-  <div class="comment" ng-repeat="comment in review.comments | orderBy: 'comments.created_at':true | limitTo:vm.commentsLimit">
+  <div class="comment" ng-repeat="comment in review.comments | orderBy: 'comments.created_at' | limitTo:vm.commentsLimit">
     <div class="content">
       <a class="author">{{comment.user.username}}</a>
       <div class="metadata">
