@@ -60,17 +60,21 @@
                   .then(function(registeredUser)  {
                       // $rootScope.currentUser = registeredUser
                       // window.localStorage.setItem('user', JSON.stringify(registeredUser))
-                      vm.user = user
+                      vm.user = registeredUser
                       location.reload()
                       $location.path('/reviews')
                 }, function(error)  {
-                  if (error.data.error) {
-                    vm.error = error.data.error
-                    alert(error.data.error)
+                 vm.error = error.data.errors
+                 vm.errors = error.data.errors
+                  if (vm.errors.email)  {
+                    vm.errors.email.forEach(function (value){
+                      alert("email " + value)
+                    }) 
                   }
-                  else  {
-                    vm.error = error.data.errors
-                    alert(error.data.errors)
+                  if (vm.errors.password)  {
+                    vm.errors.password.forEach(function (value){
+                      alert("password " + value)
+                    }) 
                   }
             });
         }
