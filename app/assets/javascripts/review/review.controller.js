@@ -219,6 +219,8 @@
 
         function createList(id) {
           return ListsFactory.createList(id, this.newList)
+                                .then(alert("Successfully Created List"))
+                                .then(location.reload())
                                 .then(getReviews)
         }
 

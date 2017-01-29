@@ -3,7 +3,7 @@ class ListsController < ActionController::Base
     before_action :authenticate_user!, only: [:create, :delete]
 
     def create
-        list = current_user.lists.build(name: params[:name])
+        list = current_user.lists.find_or_create_by(name: params[:name])
           if list.save
               render json: { status: 'ok'}
           else
