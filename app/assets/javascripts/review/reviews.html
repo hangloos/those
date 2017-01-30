@@ -11,7 +11,7 @@
 <br></br>
 
 <div class="ui items">
-  <div class="item" ng-repeat="review in vm.reviews | orderBy: 'review.created_at' | filter:searchBox | startFrom:vm.currentPage*vm.pageSize | limitTo: vm.pageSize">
+  <div class="item" ng-repeat="review in vm.reviews | orderBy: '-created_at' | filter:searchBox | startFrom:vm.currentPage*vm.pageSize | limitTo: vm.pageSize">
     <!-- Image -->
     <div class="ui medium image">
       <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>

@@ -187,7 +187,8 @@
         }
 
         function setLimit(review) {
-          vm.commentsLimit = review.comments.length
+          vm.totalComments = review.comments.length
+          vm.commentsLimit = vm.commentsLimit + 4
           getReviews();
 
         }
