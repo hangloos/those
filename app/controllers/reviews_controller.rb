@@ -4,7 +4,7 @@ class ReviewsController < ActionController::Base
         render json: Review.eager_load(:review_likes, comments: [:user, :likes]).all.as_json(include: [:review_likes, comments: {include: [:user, :likes]}])    
     end
     def show
-        render json: Review.eager_load(comments: [:user]).find(params[:id]).as_json(include: [comments: {include: [:user]}])
+        render json: Review.eager_load(comments: [:user, :likes]).find(params[:id]).as_json(include: [comments: {include: [:user, :likes]}])
     end
 
 

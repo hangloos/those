@@ -55,7 +55,7 @@
         function getReviews() {
           vm.newComment = ""
           vm.newReview = ""
-          if (!!$stateParams.reviewId && vm.commentsLimit > 2) {
+          if (!!$stateParams.reviewId) {
             return ReviewsFactory.getReviews()
                         .then(setReviews)
           }
