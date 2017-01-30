@@ -2,11 +2,11 @@
 
     'use strict';
 
-    angular
+    var app = angular
         .module('those-movie-guys')
         .controller('ReviewController', ReviewController)
 
-   function ReviewController($scope ,$location, $stateParams, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
+   function ReviewController($scope ,$filter, $location, $stateParams, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
         var vm = this;
 
         vm.deleteReview = deleteReview;
@@ -34,12 +34,8 @@
 
 
         vm.commentsLimit = 2;
-        
-        // activate();
 
-        // function activate() {
-        //   getReviews();
-        // }
+
         if (!$stateParams.reviewId) {
           getReviews();
         }
@@ -76,9 +72,18 @@
         }
 
         function setReviews(data) {
-          vm.totalReviews = data.length
+          vm.totalItems = data.length
           vm.reviews = data
           return vm.reviews
+        }
+
+         // Pagination Reviews
+
+        vm.currentPage = 0;
+        vm.pageSize = 4;
+
+        vm.numberOfPages = function(){
+          return Math.ceil(vm.totalItems/vm.pageSize)
         }
 
         function getReviewShow(id)  {
@@ -238,6 +243,14 @@
 
 
     }
+
+    app.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});
+
 
 
 
