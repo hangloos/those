@@ -16,7 +16,7 @@
         vm.showEditForm = showEditForm;
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
-        vm.loadMore = loadMore;
+        
         vm.deleteComment = deleteComment;
         vm.createLike = createLike;
         vm.getReviewShow = getReviewShow;
@@ -28,12 +28,10 @@
         vm.editCommentToggle = false;
         vm.updateComment = updateComment;
         vm.addToList = addToList;
-        vm.hideComments = hideComments;
-        vm.createReviewLike = createReviewLike
-        vm.deleteList = deleteList
+      
+        vm.createReviewLike = createReviewLike;
+        vm.deleteList = deleteList;
 
-
-        vm.commentsLimit = 2;
 
 
         if (!$stateParams.reviewId) {
@@ -177,21 +175,6 @@
                                 .then(getReviews)
         }
 
-        function loadMore(id) {
-          return CommentsFactory.getCommentsTotal(id)
-                                  .then(setLimit)
-        }
-
-        function hideComments() {
-          vm.commentsLimit = 2;
-        }
-
-        function setLimit(review) {
-          vm.totalComments = review.comments.length
-          vm.commentsLimit = vm.commentsLimit + 4
-          getReviews();
-
-        }
 
         function deleteComment(comment_id)  {
           return CommentsFactory.deleteComment(comment_id)

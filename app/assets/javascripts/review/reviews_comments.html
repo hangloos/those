@@ -1,6 +1,6 @@
 <div class="ui comments">
   <h3 class="ui dividing header">Comments</h3>
-  <div class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at' | limitTo:vm.commentsLimit">
+  <div ng-show="showComments" class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at'">
     <div class="content">
       <a class="author">{{comment.user.username}}</a>
       <div class="metadata">
@@ -28,11 +28,11 @@
     <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(review.id)" ng-show="hm.user.email">
       <i class="icon edit"></i> Add Reply
     </div>
-    <div class="mini ui blue labeled submit icon button" ng-click='vm.loadMore(review.id)' ng-show="review.comments.length > vm.commentsLimit">
+    <div class="mini ui blue labeled submit icon button" ng-click='showComments = !showComments' ng-show="!showComments && review.comments.length > 0">
       <i class="toggle off icon"></i>
-      Load More Comments
+      Load Comments
     </div>
-    <div class="mini ui blue labeled submit icon button" ng-click='vm.hideComments()' ng-show="vm.commentsLimit > 2">
+    <div class="mini ui blue labeled submit icon button" ng-click='showComments = !showComments' ng-show="showComments">
       <i class="toggle on icon"></i>
       Hide Comments
     </div>
