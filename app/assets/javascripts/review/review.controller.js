@@ -30,6 +30,7 @@
         vm.addToList = addToList;
         vm.hideComments = hideComments;
         vm.createReviewLike = createReviewLike
+        vm.deleteList = deleteList
 
 
         vm.commentsLimit = 2;
@@ -228,6 +229,11 @@
           return ListsFactory.addToList(review_id, this.selectedList.id)
                                   .then(getReviews)
 
+        }
+
+        function deleteList(list_id)  {
+          return ListsFactory.deleteList(list_id)
+                                    .then(getReviews)
         }
 
 

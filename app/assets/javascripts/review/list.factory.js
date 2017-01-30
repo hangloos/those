@@ -7,7 +7,8 @@
 
       return  {
         createList: createList,
-        addToList: addToList
+        addToList: addToList,
+        deleteList: deleteList
         
       }
 
@@ -43,8 +44,24 @@
         };
         return $http(req)
                       .then(alert("Successfully Added To List"))
-                      .then(location.reload())
                       .catch(handleError)
+      }
+
+
+      function deleteList(list_id)  {
+        var req = {
+          method: 'DELETE',
+          url: '/lists/:list_id',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: {
+            id: list_id
+          }
+        };
+        return $http(req)
+                    .then("Successfully deleted List")
+                    .catch(handleError)
       }
 
       function handleResponse(response) {
