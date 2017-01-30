@@ -31,6 +31,7 @@
       
         vm.createReviewLike = createReviewLike;
         vm.deleteList = deleteList;
+        vm.roundUpNumber = roundUpNumber;
 
 
 
@@ -83,6 +84,14 @@
         vm.numberOfPages = function(){
           return Math.ceil(vm.totalItems/vm.pageSize)
         }
+
+        vm.currentCommentPage = 0;
+        vm.commentPageSize = 2;
+
+        function roundUpNumber(number){
+          return Math.round(number)
+        }
+
 
         function getReviewShow(id)  {
             return ReviewsFactory.getReview(id)

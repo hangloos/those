@@ -56,11 +56,11 @@
 
   <div class="ui buttons">
   <button class="ui labeled icon button" ng-show="!vm.currentPage <= 0" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1"><i class="left chevron icon"></i>
-        Previous
+        Previous Page
     </button>
     <button class="ui button disabled">{{vm.currentPage+1}}/{{vm.numberOfPages()}}</button>
     <button class="ui right labeled icon button" ng-show="!(vm.currentPage >= vm.numberofPages())" ng-disabled="vm.currentPage >= vm.numberOfPages() - 1" ng-click="vm.currentPage=vm.currentPage+1">
-        Next
+        Next Page
         <i class="right chevron icon"></i>
     </button>
     </div>

@@ -1,6 +1,6 @@
 <div class="ui comments">
   <h3 class="ui dividing header">Comments</h3>
-  <div ng-show="showComments" class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at'">
+  <div ng-show="showComments" class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at' | startFrom:vm.currentCommentPage*vm.commentPageSize | limitTo: vm.commentPageSize">
     <div class="content">
       <a class="author">{{comment.user.username}}</a>
       <div class="metadata">
@@ -19,6 +19,17 @@
     <div ng-include="'review/reviews_edit_comment.html'"></div>
   </div>
   </div>
+
+  <div class="mini ui buttons">
+  <button class="ui labeled icon button" ng-show="!vm.currentCommentPage <= 0" ng-disabled="vm.currentCommentPage == 0" ng-click="vm.currentCommentPage=vm.currentCommentPage-1"><i class="left chevron icon"></i>
+        Previous
+    </button>
+    <button class="ui button disabled">{{vm.currentCommentPage+1}}/{{(vm.roundUpNumber(review.comments.length/vm.commentPageSize))}}</button>
+    <button class="ui right labeled icon button" ng-show="!(vm.currentCommentPage >= (vm.roundUpNumber(review.comments.length/vm.commentPageSize - 1)))" ng-disabled="vm.currentCommentPage >= (vm.roundUpNumber(review.comments.length/vm.commentPageSize - 1))" ng-click="vm.currentCommentPage=vm.currentCommentPage+1">
+        Next
+        <i class="right chevron icon"></i>
+    </button>
+    </div>
 
   
   <form class="ui reply form">
