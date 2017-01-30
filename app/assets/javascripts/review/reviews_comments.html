@@ -23,7 +23,7 @@
   
   <form class="ui reply form">
     <div class="field">
-      <textarea ng-show="hm.user.email" ng-model="vm.newComment"></textarea><grammarly-btn><div style="z-index: 2; opacity: 1; transform: translate(619px, 137px);" class="_e725ae-textarea_btn _e725ae-not_focused" data-grammarly-reactid=".0"><div class="_e725ae-transform_wrap" data-grammarly-reactid=".0.0"><div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".0.0.0">&nbsp;</div></div></div></grammarly-btn>
+      <input ng-show="hm.user.email" ng-model="vm.newComment" class="small_text_area" placeholder="Add Comment">
     </div>
     <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(review.id)" ng-show="hm.user.email">
       <i class="icon edit"></i> Add Reply
