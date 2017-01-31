@@ -16,7 +16,6 @@
         vm.showEditForm = showEditForm;
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
-        
         vm.deleteComment = deleteComment;
         vm.createLike = createLike;
         vm.getReviewShow = getReviewShow;
@@ -28,7 +27,6 @@
         vm.editCommentToggle = false;
         vm.updateComment = updateComment;
         vm.addToList = addToList;
-      
         vm.createReviewLike = createReviewLike;
         vm.deleteList = deleteList;
         vm.roundUpNumber = roundUpNumber;
@@ -43,14 +41,7 @@
           getReviewShow($stateParams.reviewId);
         }
 
-        // function toggle() {
-        //   $('.ui.button.toggle').state()
-        // }
-
-        function createReviewLike(review_id, user_id) {
-            return ReviewsFactory.createReviewLike(review_id,user_id)
-                                      .then(getReviews)
-        }
+        // Reviews All
 
         function getReviews() {
           vm.newComment = ""
@@ -76,6 +67,7 @@
           return vm.reviews
         }
 
+
          // Pagination Reviews
 
         vm.currentPage = 0;
@@ -98,16 +90,7 @@
           return Math.round(number)
         }
 
-
-        function getReviewShow(id)  {
-            return ReviewsFactory.getReview(id)
-                                        .then(setReview)
-        }
-
-        function setReview(review)  {
-            vm.reviewData = review
-
-        }
+        // Create Review
 
         function setNewReview(movie) {
           vm.newReview.title = movie.Title
@@ -145,6 +128,33 @@
                                .then(setNewReview)
          }
 
+         // Review Show
+
+        function getReviewShow(id)  {
+            return ReviewsFactory.getReview(id)
+                                        .then(setReview)
+        }
+
+        function setReview(review)  {
+            vm.reviewData = review
+
+        }
+
+        // Delete, Edit Review
+
+        function deleteReview(id) {
+          return ReviewsFactory.deleteReview(id)
+                            .then(location.hash = "#/reviews")
+                            .then(getReviews)
+          
+        }
+
+        function editReviewRating(id) {
+          return ReviewsFactory.updateReview(id,this.newReview)
+                            .then(getReviews)
+          
+        }
+
          function reset() {
           vm.newReview = {}
           vm.editTrueValue = false
@@ -163,27 +173,8 @@
 
           }
 
-        function showListForm() {
-          if (vm.listFormValue) {
-            vm.listFormValue = false
-          }
-          else  {
-          vm.listFormValue = true
-          }
-          } 
 
-        function deleteReview(id) {
-          return ReviewsFactory.deleteReview(id)
-                            .then(location.hash = "#/reviews")
-                            .then(getReviews)
-          
-        }
-
-        function editReviewRating(id) {
-          return ReviewsFactory.updateReview(id,this.newReview)
-                            .then(getReviews)
-          
-        }
+          // Comments
 
         function createComment(id)  {
           return CommentsFactory.createComment(id, this.newComment)
@@ -212,15 +203,17 @@
                                     .then(getReviews)
         }
 
-        function createLike(review_id, comment_id) {
-          return LikesFactory.createLike(review_id,comment_id)
-                                  .then(getReviews)
-        }
 
-        function deleteLike(review_id,comment_id) {
-          return LikesFactory.deleteLike(review_id,comment_id)
-                                  .then(getReviews)
-        }
+        // Lists
+
+        function showListForm() {
+          if (vm.listFormValue) {
+            vm.listFormValue = false
+          }
+          else  {
+          vm.listFormValue = true
+          }
+          } 
 
         function createList(id) {
           return ListsFactory.createList(id, this.newList)
@@ -240,9 +233,26 @@
                                     .then(getReviews)
         }
 
+        // Comment Likes , Review Likes
+        function createReviewLike(review_id, user_id) {
+          return ReviewsFactory.createReviewLike(review_id,user_id)
+                                      .then(getReviews)
+        }
+
+        function createLike(review_id, comment_id) {
+          return LikesFactory.createLike(review_id,comment_id)
+                                  .then(getReviews)
+        }
+
+        function deleteLike(review_id,comment_id) {
+          return LikesFactory.deleteLike(review_id,comment_id)
+                                  .then(getReviews)
+        }
+
 
     }
 
+    // Pagination Filter
     app.filter('startFrom', function() {
     return function(input, start) {
         start = start++;
