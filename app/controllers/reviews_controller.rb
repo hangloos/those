@@ -20,7 +20,7 @@ class ReviewsController < ActionController::Base
 
     def update
         review = Review.find_by_id(params[:id])
-        if check_admin? && review.update(review_params)
+        if check_admin? && review.update(review_params.reject{|_, v| v.blank?})
              render json: { status: 'ok'}
         else
             render json: { errors: review.errors.full_messages }, status: :unprocessable_entity

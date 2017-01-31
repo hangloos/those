@@ -67,16 +67,17 @@
       }
 
 
-      function updateReview(id,rating) {
+      function updateReview(review_id,rating,review_content) {
 
         var req = {
           method: 'PATCH',
-          url: '/reviews/'+id,
+          url: '/reviews/'+review_id,
           headers: {
             'Content-Type': 'application/json'
           },
           data: {
-            review: rating
+            those_movie_guys_rating: rating,
+            those_movie_guys_review: review_content
           }
         };
         console.log(req)

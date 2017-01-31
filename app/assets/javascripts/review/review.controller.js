@@ -157,9 +157,26 @@
           
         }
 
-        function editReviewRating(id) {
-          return ReviewsFactory.updateReview(id,this.newReview)
+        function editReviewRating(review_id) {
+          //debugger
+          if (this.newReview.those_movie_guys_review && !(this.newReview.those_movie_guys_rating)){
+                      return ReviewsFactory.updateReview(review_id,"", this.newReview.those_movie_guys_review[review_id])
                             .then(getReviews)
+          }
+
+          else if (!(this.newReview.those_movie_guys_review) && this.newReview.those_movie_guys_rating){
+          return ReviewsFactory.updateReview(review_id,this.newReview.those_movie_guys_rating[review_id], "")
+                            .then(getReviews)
+          }
+
+          else if (!(this.newReview.those_movie_guys_review) && !(this.newReview.those_movie_guys_rating)){
+          return getReviews();
+          }
+
+          else {
+            return ReviewsFactory.updateReview(review_id,this.newReview.those_movie_guys_rating[review_id], this.newReview.those_movie_guys_review[review_id])
+                            .then(getReviews)
+          }
           
         }
 
