@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit]
 
   post '/bookmark' => 'lists#bookmark'
+  post '/remove_bookmark' => 'lists#remove_bookmark'
 end

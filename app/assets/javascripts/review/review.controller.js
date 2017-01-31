@@ -31,6 +31,9 @@
         vm.deleteList = deleteList;
         vm.roundUpNumber = roundUpNumber;
 
+        vm.listReviews = [];
+        vm.removeReviewsLists = removeReviewsLists;
+        vm.removalListsObject = removalListsObject
 
 
         if (!$stateParams.reviewId) {
@@ -87,7 +90,12 @@
         vm.commentPageSize = 2;
 
         function roundUpNumber(number){
+          if (number == 0 ) {
+            return 1
+          }
+          else {
           return Math.round(number)
+          }
         }
 
         // Create Review
@@ -205,6 +213,19 @@
 
 
         // Lists
+
+        function removalListsObject(list_id, review_id) {
+          this.listReviews.push({list_id,review_id})
+
+        }
+
+
+        function removeReviewsLists(){
+          return ListsFactory.removeFromLists(this.listReviews)
+                                          .then(location.reload())
+                                          .then(getReviews)
+        }
+
 
         function showListForm() {
           if (vm.listFormValue) {

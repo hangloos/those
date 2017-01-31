@@ -36,5 +36,15 @@ class ListsController < ActionController::Base
     end
 
 
+    def remove_bookmark
+      params[:array].each do |item|
+        list = List.find_by_id(item[:list_id])
+        review = list.reviews.where(id: item[:review_id])
+        review[0].delete
+        list.save
+      end
+    end
+
+
 
 end

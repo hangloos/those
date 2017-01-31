@@ -8,10 +8,26 @@
       return  {
         createList: createList,
         addToList: addToList,
-        deleteList: deleteList
+        deleteList: deleteList,
+        removeFromLists: removeFromLists
         
       }
 
+
+      function removeFromLists(array) {
+        var req = {
+          method: 'POST',
+          url: '/remove_bookmark',
+          headers: {
+              'Content-Type': 'application/json' 
+            },
+            data: {
+              array: array
+            }
+          };
+          return $http(req)
+                      .catch(handleError)
+        }
 
       function createList(id,list) {
         var req = {

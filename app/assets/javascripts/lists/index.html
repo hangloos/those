@@ -3,6 +3,11 @@
     <li class="header">{{list.name}} <i class="remove link icon" ng-really-message="Are you sure you want to delete this list?" ng-really-click="vm.deleteList(list.id)"></i>
         <ul class="list-group" ng-repeat="review in list.reviews">
             <li class="item" ng-show="list.reviews.length > 0">{{review.title}}-{{review.those_movie_guys_rating}}-{{review.those_movie_guys_review}}-{{review.viewing_platform}}</li>
+            <input type="checkbox" ng-click="vm.removalListsObject(list.id, review.id)">
         </ul>
     </li>
 </ul>
+
+<button class="ui button" ng-click="vm.removeReviewsLists()">Remove From List</button>
+
+<!-- When click a checkbox, adds list.id and review.id to an object in controller. When submit. the function will take that object and post to controller. custom method like bookmark  -->
