@@ -207,7 +207,7 @@
         }
 
         function updateComment(comment_id, review_id)  {
-          return CommentsFactory.updateComment(comment_id, review_id, this.newComment)
+          return CommentsFactory.updateComment(comment_id, review_id, this.newComment[comment_id])
                                     .then(getReviews)
         }
 

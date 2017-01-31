@@ -1,4 +1,4 @@
-<form class="form-group" ng-show="vm.editCommentToggle">
-      <input class="form-control"  type="text" placeholder="{{comment.comment}}" ng-model="vm.newComment"/>
+<form class="form-group" ng-if="vm.editCommentToggle && comment.user_id == hm.user.id">
+      <input class="form-control"  type="text" placeholder="{{comment.comment}}" ng-model="vm.newComment[comment.id]"/>
       <button type="submit" class="btn btn-default" ng-click="vm.updateComment(comment.id, comment.review_id)">Edit Comment</button>
 </form>

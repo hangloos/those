@@ -7,7 +7,7 @@
         <span class="date">
         {{comment.created_at | date: 'longDate'}} 
         <a style="color:blue" ng-click="vm.createLike(review.id,comment.id)" ng-show="hm.user.email" class="item"><i class="like icon"></i> Like<div class="ui red label">{{comment.likes.length}}</div></a>
-        <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-click="vm.editComment()"><i class="edit icon"></i></a>
+        <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-click="vm.editComment(comment.id)"><i class="edit icon"></i></a>
         <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-really-message="Are you sure you want to delete this comment?" ng-really-click="vm.deleteComment(comment.id)"><i class="remove icon"></i></a>
         </span>
       </div>
