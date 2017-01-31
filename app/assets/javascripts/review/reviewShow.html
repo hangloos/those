@@ -13,7 +13,7 @@
   <div class="item">
     <!-- Image -->
     <div class="ui medium image">
-      <div class="ui blue ribbon label large"><i class="thumbs outline up icon"></i><h2>{{vm.reviewData.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"></i></div>
+      <div class="ui blue ribbon label large"><h2>{{vm.reviewData.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"></i></div>
       <a class="ui blue right corner label" ng-click="vm.addToList(vm.reviewData.id)" ng-show="hm.user.lists.length > 0"><i class="bookmark icon"></i></a>
       <img src="{{vm.reviewData.picture_url}}">
     </div>
