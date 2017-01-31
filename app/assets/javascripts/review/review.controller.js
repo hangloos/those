@@ -82,7 +82,13 @@
         vm.pageSize = 4;
 
         vm.numberOfPages = function(){
+          if (Math.ceil(vm.totalItems/vm.pageSize) != 0)  {
           return Math.ceil(vm.totalItems/vm.pageSize)
+          }
+
+          else  {
+            return 1
+          }
         }
 
         vm.currentCommentPage = 0;
@@ -239,8 +245,10 @@
 
     app.filter('startFrom', function() {
     return function(input, start) {
-        start = start++; //parse to int
-        return input.slice(start);
+        start = start++;
+        if (input)  { //parse to int
+        return input.slice(start)
+      }
     }
 });
 
