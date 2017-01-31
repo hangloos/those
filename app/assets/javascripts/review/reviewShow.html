@@ -67,7 +67,7 @@
         
         <form class="ui reply form">
           <div class="field">
-            <input ng-show="hm.user.email" ng-model="vm.newComment" class="small_text_area" placeholder="Add Comment">
+            <input ng-show="hm.user.email" ng-model="vm.newComment[vm.reviewData.id]" class="small_text_area" placeholder="Add Comment">
           </div>
           <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(vm.reviewData.id)" ng-show="hm.user.email">
             <i class="icon edit"></i> Add Reply

@@ -185,7 +185,7 @@
           // Comments
 
         function createComment(id)  {
-          return CommentsFactory.createComment(id, this.newComment)
+          return CommentsFactory.createComment(id, this.newComment[id])
                                 .then(getReviews)
         }
 
