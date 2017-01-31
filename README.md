@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Those Movie Guys - Review Application
 
-Things you may want to cover:
+Those Movie Guys is a movie/tv review application run by 3 movie/tv experts. Get information about the industry, read their reviews, create your own lists, like/comment with the community. 
 
-* Ruby version
+To run this app:
 
-* System dependencies
+please make sure you have postgreSQL and Rails installed.
 
-* Configuration
+- bundle install
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
