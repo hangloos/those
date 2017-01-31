@@ -20,7 +20,7 @@
     </div>
     
     <div class="content">
-      <div class="header">{{review.title}}</div>
+      <div class="header" id="uppercase">{{review.title}}-{{review.review_type}}</div>
         <!-- review likes -->
         <div class="ui labeled button" tabindex="0">
           <div class="ui toggle button" ng-click="vm.createReviewLike(review.id,hm.user.id)"><i class="heart icon link" data-content="Hello. This is an inverted popup" data-variation="inverted"></i></div>
