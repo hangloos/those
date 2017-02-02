@@ -1,11 +1,8 @@
-<button class="ui right floated button" ng-show="hm.user">Create List</button>
+
 <select class="ui dropdown" ng-options="list.name for list in hm.user.lists" ng-model="vm.selectedList" ng-show="hm.user && hm.user.lists.length > 0">
   <option ng-selected="true" value="">Select One Of Your Lists</option>
 </select>
-<div class="ui search">
-<input class="prompt" type="text" placeholder="Search By Title.." ng-model="searchBox.title">
-<input class="prompt" type="text" placeholder="Search By Rating.." ng-model="searchBox.those_movie_guys_rating">
-</div>
+
 
 <br></br>
 
