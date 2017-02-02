@@ -8,7 +8,8 @@
       "moment": "latest",
       "bootstrap": "latest",
       "angular-semantic": "latest",
-      "semantic-ui": "latest"
+      "semantic-ui": "latest",
+      "angular-mocks": "latest"
     }
   }
 }

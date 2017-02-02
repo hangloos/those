@@ -35,6 +35,24 @@
         vm.removeReviewsLists = removeReviewsLists;
         vm.removalListsObject = removalListsObject
 
+        vm.active = active;
+        vm.open = open;
+        vm.hide = hide;
+        
+
+        function open() {
+          $('.ui.modal').modal('show')
+        }
+
+        function hide()  {
+          $('.ui.modal').modal('hide')
+        }
+
+        function active() {
+          debugger
+          $(this).toggleClass('active');
+        }
+
 
         if (!$stateParams.reviewId) {
           getReviews();

@@ -17,6 +17,17 @@
 
  @import "semantic-ui";
 
+
+#small-modal {
+ width: 300px;
+   height: 100px;
+   position: absolute;
+   left: 50%;
+   top: 50%; 
+   margin-left: -150px;
+   margin-top: -150px;
+}
+
 .active {
   background-color: yellow;
 }
