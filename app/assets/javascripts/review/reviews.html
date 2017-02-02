@@ -25,7 +25,7 @@
       <div class="header" id="uppercase">{{review.title}}-{{review.review_type}}</div>
         <!-- review likes -->
         <div class="ui labeled button" tabindex="0">
-          <div class="ui toggle button active" ng-click="vm.createReviewLike(review.id,hm.user.id) && vm.active()"><i class="heart icon link" ></i></div>
+          <div ng-show="hm.user" class="ui toggle button active" ng-click="vm.createReviewLike(review.id,hm.user.id)"><i class="heart icon link" ></i></div>
           <p class="ui basic red left pointing label">{{review.review_likes.length}}</p>
         </div>
       <div class="meta">

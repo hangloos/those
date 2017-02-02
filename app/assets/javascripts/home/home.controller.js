@@ -12,6 +12,14 @@
         vm.login = login
         vm.register = register
 
+        vm.open = function(item){
+            $('.ui.modal.' + item).modal('show')
+        }
+
+        vm.hide = function(item){
+            $('.ui.modal.' + item).modal('hide')
+        }
+
         Auth.currentUser()
               .then(function(user)  {
                 vm.user = user

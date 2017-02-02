@@ -58,7 +58,9 @@
         if (!$stateParams.reviewId) {
           getReviews();
           //getUser(JSON.parse(localStorage.user).id);
+          if (localStorage.user)  {
           vm.user = JSON.parse(localStorage.user)
+          }
         }
 
         if (!!$stateParams.reviewId) {
@@ -290,9 +292,10 @@
 
         }
 
-        function deleteList(list_id)  {
+        function deleteList(list_id,user_id)  {
           return ListsFactory.deleteList(list_id)
                                     .then(getReviews)
+                                    .then(getUser(user_id))
         }
 
         // Comment Likes , Review Likes

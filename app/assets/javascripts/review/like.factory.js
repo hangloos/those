@@ -14,7 +14,7 @@
       function createLike(review_id,comment_id) {
         var req = {
             method: 'POST',
-            url: '/reviews/:review_id/comments/:comment_id/likes',
+            url: '/reviews/' + review_id + "/comments/" + comment_id + "/likes",
             headers: {
               'Content-Type': 'application/json' 
             },
@@ -30,7 +30,7 @@
       function  deleteLike(review_id,comment_id) {
         var req = {
             method: 'DELETE',
-            url: '/reviews/:review_id/comments/:comment_id/likes',
+            url: '/reviews/' + review_id + "/comments/" + comment_id + "/likes",
             headers: {
               'Content-Type': 'application/json' 
             },

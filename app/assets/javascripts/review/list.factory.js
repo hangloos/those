@@ -67,7 +67,7 @@
       function deleteList(list_id)  {
         var req = {
           method: 'DELETE',
-          url: '/lists/:list_id',
+          url: '/lists/' + list_id,
           headers: {
             'Content-Type': 'application/json'
           },
