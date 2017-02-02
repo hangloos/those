@@ -6,7 +6,7 @@
         <div class="ui small input">
           <input class="ui small input" ng-model="vm.newList" placeholder="List Name">
         </div>
-        <button  class="mini ui submit button" type="submit" ng-click="vm.createList(hm.user.id)">Submit</button>
+        <button  class="mini ui submit button" type="submit" ng-click="vm.createList(hm.user.id) && vm.reset()">Submit</button>
         <button class="mini ui submit button" type="reset" ng-click="vm.reset()">Reset</button>
       </form>
   </div>

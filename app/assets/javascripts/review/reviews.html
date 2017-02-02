@@ -1,6 +1,6 @@
 <button class="ui right floated button" ng-click="vm.open()" ng-show="hm.user">Create List</button>
 <div ng-include="'review/createListForm.html'"></div>
-<select class="ui dropdown" ng-options="list.name for list in hm.user.lists" ng-model="vm.selectedList" ng-show="hm.user && hm.user.lists.length > 0">
+<select class="ui dropdown" ng-options="list.name for list in vm.user.lists" ng-model="vm.selectedList" ng-show="vm.user && vm.user.lists.length > 0">
   <option ng-selected="true" value="">Select One Of Your Lists</option>
 </select>
 <div class="ui search">

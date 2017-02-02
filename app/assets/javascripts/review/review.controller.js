@@ -6,9 +6,11 @@
         .module('those-movie-guys')
         .controller('ReviewController', ReviewController)
 
-   function ReviewController($scope ,$filter, $location, $stateParams, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
+   function ReviewController($scope ,$filter, $location, $stateParams, UsersFactory, ReviewsFactory, CommentsFactory, LikesFactory, ListsFactory) {
         var vm = this;
 
+        vm.getUser = getUser;
+        vm.setUser = setUser;
         vm.deleteReview = deleteReview;
         vm.createReviewInformation = createReviewInformation;
         vm.reset = reset;
@@ -21,7 +23,6 @@
         vm.getReviewShow = getReviewShow;
         vm.setReview = setReview;
         vm.createList = createList;
-        vm.showListForm = showListForm
         vm.listFormValue = false;
         vm.editComment = editComment;
         vm.editCommentToggle = false;
@@ -56,10 +57,24 @@
 
         if (!$stateParams.reviewId) {
           getReviews();
+          //getUser(JSON.parse(localStorage.user).id);
+          vm.user = JSON.parse(localStorage.user)
         }
 
         if (!!$stateParams.reviewId) {
           getReviewShow($stateParams.reviewId);
+        }
+
+        // User
+
+        function getUser(user_id)  {
+          return UsersFactory.getUser(user_id)
+                              .then(setUser)
+
+        }
+
+        function setUser(data)  {
+          vm.user = data
         }
 
         // Reviews All
@@ -201,7 +216,7 @@
          function reset() {
           vm.newReview = {}
           vm.editTrueValue = false
-          vm.newList = {}
+          vm.newList = ""
           vm.listFormValue = false
          }
 
@@ -262,20 +277,11 @@
         }
 
 
-        function showListForm() {
-          if (vm.listFormValue) {
-            vm.listFormValue = false
-          }
-          else  {
-          vm.listFormValue = true
-          }
-          } 
-
         function createList(id) {
           return ListsFactory.createList(id, this.newList)
-                                .then(alert("Successfully Created List"))
-                                .then(location.reload())
                                 .then(getReviews)
+                                .then(getUser(id))
+                                .then(hide)
         }
 
         function addToList(review_id) {
