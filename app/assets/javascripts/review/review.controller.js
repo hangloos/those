@@ -15,7 +15,6 @@
         vm.createReviewInformation = createReviewInformation;
         vm.reset = reset;
         vm.editTrueValue = false;
-        vm.showEditForm = showEditForm;
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
         vm.deleteComment = deleteComment;
@@ -41,8 +40,8 @@
         vm.hide = hide;
         
 
-        function open() {
-          $('.ui.modal').modal('show')
+        function open(item) {
+          $('.ui.modal.' + item).modal('show')
         }
 
         function hide()  {
@@ -222,17 +221,6 @@
           vm.newList = ""
           vm.listFormValue = false
          }
-
-         function showEditForm() {
-           if (vm.editTrueValue) {
-            vm.editTrueValue = false
-          }
-
-          else  {
-          vm.editTrueValue = true
-          }
-
-          }
 
 
           // Comments

@@ -1,4 +1,4 @@
-<button class="ui right floated button" ng-click="vm.open()" ng-show="hm.user">Create List</button>
+<button class="ui right floated button" ng-click="vm.open('list')" ng-show="hm.user">Create List</button>
 <div ng-include="'review/createListForm.html'"></div>
 <select class="ui dropdown" ng-options="list.name for list in vm.user.lists" ng-model="vm.selectedList" ng-show="vm.user && vm.user.lists.length > 0">
   <option ng-selected="true" value="">Select One Of Your Lists</option>
@@ -13,10 +13,10 @@
 <div class="ui items">
   <div class="item" ng-repeat="review in vm.reviews | orderBy: '-created_at' | filter:searchBox | startFrom:vm.currentPage*vm.pageSize | limitTo: vm.pageSize">
       <!-- Edit Review Form - Admin -->
-    <div ng-show="vm.editTrueValue" ng-include="'review/edit.html'"></div>
+    <div ng-include="'review/edit.html'"></div>
     <!-- Image -->
     <div class="ui medium image">
-      <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
+      <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.open('editreview')" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
       <a class="ui blue right corner label" ng-click="vm.addToList(review.id)" ng-show="hm.user.lists.length > 0"><i class="bookmark icon"></i></a>
       <img src="{{review.picture_url}}">
     </div>
