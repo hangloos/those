@@ -1,5 +1,5 @@
 <h1>Your Comments</h1>
-<div class="ui list" ng-repeat="comment in hm.user.comments | orderBy: '+':true">
+<div class="ui list" ng-repeat="comment in vm.user.comments | orderBy: '+':true">
   <div class="item">
     <img class="ui avatar image" src="{{comment.review.picture_url}}">
     <div class="content">

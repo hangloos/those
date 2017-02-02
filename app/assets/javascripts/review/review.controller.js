@@ -237,9 +237,10 @@
 
           // Comments
 
-        function createComment(id)  {
-          return CommentsFactory.createComment(id, this.newComment[id])
+        function createComment(review_id, user_id)  {
+          return CommentsFactory.createComment(review_id, this.newComment[review_id])
                                 .then(getReviews)
+                                .then(getUser(user_id))
         }
 
 
