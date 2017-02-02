@@ -60,6 +60,7 @@
           //getUser(JSON.parse(localStorage.user).id);
           if (localStorage.user)  {
           vm.user = JSON.parse(localStorage.user)
+          getUser(vm.user.id)
           }
         }
 
@@ -272,10 +273,10 @@
         }
 
 
-        function removeReviewsLists(){
+        function removeReviewsLists(user_id){
           return ListsFactory.removeFromLists(this.listReviews)
-                                          .then(location.reload())
                                           .then(getReviews)
+                                          .then(getUser(user_id))
         }
 
 
