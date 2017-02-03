@@ -16,7 +16,11 @@
     </div>
     
     <div class="content">
-      <div class="header">{{vm.reviewData.title}}</div>
+      <div class="header">{{vm.reviewData.title}}-{{vm.reviewData.review_type}}</div>
+      <div class="ui labeled button" tabindex="0">
+          <div ng-show="hm.user" ng-class="'ReviewLike.where(user_id: hm.user.id, review_id: review.id).length > 0' ? 'ui toggle button active' : 'ui toggle button'" ng-click="vm.createReviewLike($event, vm.reviewData.id,hm.user.id)"><i class="heart icon link" ></i></div>
+          <p class="ui basic red left pointing label">{{vm.reviewData.review_likes.length}}</p>
+        </div>
       <div class="meta">
         <span class="location">{{vm.reviewData.viewing_platform}}</span>
       </div>
