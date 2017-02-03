@@ -32,6 +32,7 @@ class ReviewsController < ActionController::Base
   
           if check_admin? && review.delete
           review.comments.each{|x| x.delete}
+          review.review_likes.each{|x| x.delete}
           render json: { status: 'ok'}
           else
           render json: { errors: review.errors.full_messages }, status: :unprocessable_entity

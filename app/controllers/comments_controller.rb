@@ -35,6 +35,7 @@ class CommentsController < ActionController::Base
       comment = Comment.find_by_id(params[:comment][:id])
             if comment.user == current_user
             comment.delete
+            comment.likes.each{|x| x.delete}
             render json: { status: 'ok'}
             else
             render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
