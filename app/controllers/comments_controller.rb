@@ -12,8 +12,8 @@ class CommentsController < ActionController::Base
     end
 
     def update
-      comment = Comment.find(params[:id])
-      comment.update(comment: params[:comment])
+      comment = Comment.find(params[:comment][:id])
+      comment.update(comment_params)
       if comment.save
               render json: { status: 'ok'}
           else
@@ -22,8 +22,7 @@ class CommentsController < ActionController::Base
     end
 
     def create
-    review = Review.find_by_id(params[:id])
-    comment = current_user.comments.build(comment: params[:comment], review_id: review.id)
+    comment = current_user.comments.build(comment_params)
           if comment.save
               render json: { status: 'ok'}
           else
@@ -40,6 +39,13 @@ class CommentsController < ActionController::Base
             else
             render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
             end
+    end
+
+
+    private
+
+    def comment_params
+      params.require(:comment).permit(:comment, :user_id, :id, :review_id)
     end
 
 

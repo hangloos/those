@@ -14,16 +14,18 @@
       }
 
 
-      function createComment(id,comment) {
+      function createComment(review_id,comment) {
         var req = {
             method: 'POST',
-            url: "/reviews/" + id + "/comments",
+            url: "/reviews/" + review_id + "/comments",
             headers: {
               'Content-Type': 'application/json' 
             },
             data: {
+              comment: {
               comment: comment,
-              id: id
+              review_id: review_id
+            }
             }
           };
           return $http(req)
@@ -44,7 +46,9 @@
               'Content-Type': 'application/json' 
             },
             data: {
-              id: comment_id
+              comment: {
+                id: comment_id
+              }
             }
           };
           return $http(req)
@@ -59,8 +63,10 @@
             'Content-Type': 'application/json'
           },
           data: {
-            comment: comment,
-            id: comment_id
+            comment: {
+              id: comment_id,
+              comment: comment
+            }
           }
         };
         return $http(req)
