@@ -1,6 +1,6 @@
 <div class="ui comments">
   <h3 class="ui dividing header">Comments</h3>
-  <div ng-show="showComments" class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at' | startFrom:vm.currentCommentPage*vm.commentPageSize | limitTo: vm.commentPageSize">
+  <div  class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at' | startFrom:vm.currentCommentPage*vm.commentPageSize | limitTo: vm.commentPageSize">
     <div class="content">
       <a class="author">{{comment.user.username}}</a>
       <div class="metadata">
@@ -39,13 +39,4 @@
     <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(review.id, hm.user.id)" ng-show="hm.user.email">
       <i class="icon edit"></i> Add Reply
     </div>
-    <div class="mini ui blue labeled submit icon button" ng-click='showComments = !showComments' ng-show="!showComments && review.comments.length > 0">
-      <i class="toggle off icon"></i>
-      Load Comments
-    </div>
-    <div class="mini ui blue labeled submit icon button" ng-click='showComments = !showComments' ng-show="showComments">
-      <i class="toggle on icon"></i>
-      Hide Comments
-    </div>
-
   </form>

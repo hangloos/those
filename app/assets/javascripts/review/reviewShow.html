@@ -41,7 +41,7 @@
 
       <div class="ui comments">
         <h3 class="ui dividing header">Comments</h3>
-        <div class="comment" ng-repeat="comment in vm.reviewData.comments | orderBy: '-created_at'">
+        <div class="comment" ng-repeat="comment in vm.reviewData.comments | orderBy: '-created_at' | startFrom:vm.currentCommentPage*vm.commentPageSize | limitTo: vm.commentPageSize">
           <div class="content">
             <a class="author">{{comment.user.username}}</a>
             <div class="metadata">
@@ -61,12 +61,24 @@
         </div>
         </div>
 
+
+        <div class="mini ui buttons">
+        <button class="ui labeled icon button" ng-show="!vm.currentCommentPage <= 0" ng-disabled="vm.currentCommentPage == 0" ng-click="vm.currentCommentPage=vm.currentCommentPage-1"><i class="left chevron icon"></i>
+              Previous
+          </button>
+          <button class="ui button disabled">{{vm.currentCommentPage+1}}/{{(vm.roundUpNumber(vm.reviewData.comments.length/vm.commentPageSize))}}</button>
+          <button class="ui right labeled icon button" ng-show="!(vm.currentCommentPage >= (vm.roundUpNumber(vm.reviewData.comments.length/vm.commentPageSize - 1)))" ng-disabled="vm.currentCommentPage >= (vm.roundUpNumber(vm.reviewData.comments.length/vm.commentPageSize - 1))" ng-click="vm.currentCommentPage=vm.currentCommentPage+1">
+              Next
+              <i class="right chevron icon"></i>
+          </button>
+          </div>
+
         
         <form class="ui reply form">
           <div class="field">
             <input ng-show="hm.user.email" ng-model="vm.newComment[vm.reviewData.id]" class="small_text_area" placeholder="Add Comment">
           </div>
-          <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(vm.reviewData.id)" ng-show="hm.user.email">
+          <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(vm.reviewData.id, hm.user.id)" ng-show="hm.user.email">
             <i class="icon edit"></i> Add Reply
           </div>
         </form>
