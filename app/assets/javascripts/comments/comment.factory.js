@@ -17,7 +17,7 @@
       function createComment(id,comment) {
         var req = {
             method: 'POST',
-            url: '/reviews/:id/comments',
+            url: "/reviews/" + id + "/comments",
             headers: {
               'Content-Type': 'application/json' 
             },
@@ -39,7 +39,7 @@
       function  deleteComment(comment_id) {
         var req = {
             method: 'DELETE',
-            url: '/reviews/:review_id/comments/:comment_id',
+            url: "/reviews/" + review_id + "/comments/" + comment_id,
             headers: {
               'Content-Type': 'application/json' 
             },

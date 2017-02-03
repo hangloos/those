@@ -174,11 +174,13 @@
          // Review Show
 
         function getReviewShow(id)  {
+          debugger
             return ReviewsFactory.getReview(id)
                                         .then(setReview)
         }
 
         function setReview(review)  {
+          debugger
             vm.reviewData = review
 
         }
@@ -228,12 +230,12 @@
         function createComment(review_id, user_id)  {
           return CommentsFactory.createComment(review_id, this.newComment[review_id])
                                 .then(getReviews)
-                                .then(getUser(user_id))
+                                .then(getReviewShow(review_id))
         }
 
 
-        function deleteComment(comment_id)  {
-          return CommentsFactory.deleteComment(comment_id)
+        function deleteComment(comment_id, review_id)  {
+          return CommentsFactory.deleteComment(comment_id, review_id)
                                   .then(getReviews)
         }
 
