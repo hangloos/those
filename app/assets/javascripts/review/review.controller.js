@@ -30,6 +30,7 @@
         vm.createReviewLike = createReviewLike;
         vm.deleteList = deleteList;
         vm.roundUpNumber = roundUpNumber;
+        vm.checkReviewLike = checkReviewLike;
 
         vm.listReviews = [];
         vm.removeReviewsLists = removeReviewsLists;
@@ -38,15 +39,26 @@
         vm.active = active;
         vm.open = open;
         vm.hide = hide;
+        vm.setTimeout = setTimeout;
         
 
-        function open(item) {
+        function open(item, time) {
+          if (time) {
           $('.ui.modal.' + item).modal('show')
+          //$('.ui.modal.' + item).modal('hide'), 4000;
+
+        } else {
+          $('.ui.modal.' + item).modal('show')
+          }
         }
 
         function hide()  {
           $('.ui.modal').modal('hide')
         }
+
+        setTimeout(function(item){
+          $('.ui.modal.' + item).modal('hide')
+            }, 4000);
 
         function active() {
           debugger
@@ -174,13 +186,11 @@
          // Review Show
 
         function getReviewShow(id)  {
-          debugger
             return ReviewsFactory.getReview(id)
                                         .then(setReview)
         }
 
         function setReview(review)  {
-          debugger
             vm.reviewData = review
 
         }
@@ -279,8 +289,13 @@
         }
 
         function addToList(review_id) {
+          if (this.selectedList)  {
           return ListsFactory.addToList(review_id, this.selectedList.id)
                                   .then(getReviews)
+          } else {
+            open('bookmark');
+          }
+
 
         }
 
@@ -291,9 +306,18 @@
         }
 
         // Comment Likes , Review Likes
-        function createReviewLike(review_id, user_id) {
+
+        function checkReviewLike(user_id, review_id)  {
+          
+        }
+        function createReviewLike(event, review_id, user_id) {
+          if (event.currentTarget.className == "ui toggle button active"){
+          event.currentTarget.className = "ui toggle button";
+          } else {
+            event.currentTarget.className = "ui toggle button active";
+          }
           return ReviewsFactory.createReviewLike(review_id,user_id)
-                                      .then(getReviews)
+                                       .then(getReviews)
         }
 
         function createLike(review_id, comment_id) {

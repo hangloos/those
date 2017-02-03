@@ -59,7 +59,6 @@
           }
         };
         return $http(req)
-                      .then(alert("Successfully Added To List"))
                       .catch(handleError)
       }
 
@@ -86,6 +85,7 @@
       }
 
       function handleError(response)  {
+        debugger
         return response.data
 
       }
