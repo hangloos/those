@@ -36,7 +36,7 @@
                   .then(handleResponse)
       }
 
-      function  deleteComment(comment_id) {
+      function  deleteComment(comment_id, review_id) {
         var req = {
             method: 'DELETE',
             url: "/reviews/" + review_id + "/comments/" + comment_id,

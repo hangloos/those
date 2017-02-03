@@ -192,6 +192,7 @@
 
         function setReview(review)  {
             vm.reviewData = review
+            return vm.reviewData
 
         }
 
@@ -205,7 +206,6 @@
         }
 
         function editReviewRating(review_id) {
-          //debugger
           if (this.newReview.those_movie_guys_review && !(this.newReview.those_movie_guys_rating)){
                       return ReviewsFactory.updateReview(review_id,"", this.newReview.those_movie_guys_review[review_id])
                             .then(getReviews)
@@ -247,6 +247,7 @@
         function deleteComment(comment_id, review_id)  {
           return CommentsFactory.deleteComment(comment_id, review_id)
                                   .then(getReviews)
+                                  .then(getReviewShow(review_id))
         }
 
         function editComment()  {
