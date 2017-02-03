@@ -36,7 +36,7 @@
         vm.removeReviewsLists = removeReviewsLists;
         vm.removalListsObject = removalListsObject
 
-        vm.active = active;
+        
         vm.open = open;
         vm.hide = hide;
         vm.setTimeout = setTimeout;
@@ -59,11 +59,6 @@
         setTimeout(function(item){
           $('.ui.modal.' + item).modal('hide')
             }, 4000);
-
-        function active() {
-          debugger
-          $(this).toggleClass('active');
-        }
 
 
         if (!$stateParams.reviewId) {
@@ -202,6 +197,7 @@
           return ReviewsFactory.deleteReview(id)
                             .then(location.hash = "#/reviews")
                             .then(getReviews)
+                            .then(getReviewShow(id))
           
         }
 
@@ -209,11 +205,13 @@
           if (this.newReview.those_movie_guys_review && !(this.newReview.those_movie_guys_rating)){
                       return ReviewsFactory.updateReview(review_id,"", this.newReview.those_movie_guys_review[review_id])
                             .then(getReviews)
+                            .then(getReviewShow(review_id))
           }
 
           else if (!(this.newReview.those_movie_guys_review) && this.newReview.those_movie_guys_rating){
           return ReviewsFactory.updateReview(review_id,this.newReview.those_movie_guys_rating[review_id], "")
                             .then(getReviews)
+                            .then(getReviewShow(review_id))
           }
 
           else if (!(this.newReview.those_movie_guys_review) && !(this.newReview.those_movie_guys_rating)){
@@ -223,6 +221,7 @@
           else {
             return ReviewsFactory.updateReview(review_id,this.newReview.those_movie_guys_rating[review_id], this.newReview.those_movie_guys_review[review_id])
                             .then(getReviews)
+                            .then(getReviewShow(review_id))
           }
           
         }
@@ -264,6 +263,7 @@
         function updateComment(comment_id, review_id)  {
           return CommentsFactory.updateComment(comment_id, review_id, this.newComment[comment_id])
                                     .then(getReviews)
+                                    .then(getReviewShow(review_id))
         }
 
 
