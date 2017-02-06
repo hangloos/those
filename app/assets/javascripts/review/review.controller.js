@@ -309,6 +309,11 @@
         // Comment Likes , Review Likes
 
         function checkReviewLike(user_id, review_id)  {
+            this.reviews.forEach(function(value) {
+              value.review_likes.forEach(function(value)  {
+                user_id == value.user_id && review_id == value.review_id
+              }) 
+            })
           
         }
         function createReviewLike(event, review_id, user_id) {

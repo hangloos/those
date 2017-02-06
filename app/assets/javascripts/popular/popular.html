@@ -16,7 +16,7 @@
   <h3>Popular Movies</h3>
   <div class="item" ng-repeat="movie in vm.discoverMovies">
     <div class="image">
-      <img src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}">
+      <img ng-src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}">
     </div>
     <div class="content">
       <h3 class="ui block header">{{movie.title}}</h3>
@@ -31,7 +31,7 @@
   <h3>Popular TV</h3>
   <div class="item" ng-repeat="tv in vm.discoverTv">
     <div class="image">
-      <img src="https://image.tmdb.org/t/p/w500/{{tv.backdrop_path}}">
+      <img ng-src="https://image.tmdb.org/t/p/w500/{{tv.backdrop_path}}">
     </div>
     <div class="content">
       <a class="ui block header">{{tv.name}}</a>
