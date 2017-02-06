@@ -38,7 +38,6 @@
 
             Auth.login(vm.userForm, config)
                 .then(function(user)  {
-                  //$rootScope.currentUser = user
                   window.localStorage.setItem('user', JSON.stringify(user))
                   vm.user = user
                   location.reload()
@@ -66,7 +65,6 @@
         
             Auth.register(vm.userForm, config)
                   .then(function(registeredUser)  {
-                      // $rootScope.currentUser = registeredUser
                       vm.user = registeredUser
                       window.localStorage.setItem('user', JSON.stringify(user))
                       location.reload()
@@ -89,7 +87,6 @@
 
 
         $rootScope.$on('devise:logout', function(event, user)  {
-          // $rootScope.currentUser = {}
           window.localStorage.removeItem('user')
           vm.user = {}
           location.reload()

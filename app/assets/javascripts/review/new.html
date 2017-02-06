@@ -2,26 +2,32 @@
 <h1 align="center">Create Review</h1>
 <br></br>
 <div class="ui inverted segment">
-  <div class="ui inverted form">
+  <form class="ui inverted form" name="createReview">
     <div class="four fields">
       <div class="field">
         <label>IMDB Id</label>
-        <input ng-model="vm.newReview.imdb_id" placeholder="Copy IMDB Id from URL" type="text" maxlength="9" minlength="9" required>
+        <input ng-model="vm.newReview.imdb_id" name="imdb_id" placeholder="Copy IMDB Id from URL" type="text" maxlength="9" minlength="9" required ng-pattern="/t{2}[0-9]{7}/">
+        <div ng-messages="createReview.imdb_id.$error"><div ng-message="required">This field is required</div>
+        <div ng-message="pattern">Must be a valid IMDB id</div>
+        </div>
       </div>
       <div class="field">
         <label>Viewing Platform</label>
-        <input type="text" ng-model="vm.newReview.viewing_platform" placeholder="Where did you watch this on?" required>
+        <input type="text" ng-model="vm.newReview.viewing_platform" name="platform" placeholder="Where did you watch this on?" required>
+        <div ng-messages="createReview.platform.$error"><div ng-message="required">This field is required</div></div>
       </div>
       <div class="field">
         <label>Rating</label>
-        <input type="number" step="0.1" ng-model="vm.newReview.those_movie_guys_rating" placeholder="Rating 1-10 (Decimal)" required>
-      </div>
+        <input type="number" step="0.1" ng-model="vm.newReview.those_movie_guys_rating" name="rating" placeholder="Rating 1-10 (Decimal)" required>
       <div class="field">
         <label>Review</label>
-        <textarea rows="2" ng-model="vm.newReview.those_movie_guys_review" placeholder="Short Description" required></textarea>
+        <textarea rows="2" ng-model="vm.newReview.those_movie_guys_review" name="review" placeholder="Short Description" required></textarea>
+
       </div>
     </div>
     <div class="ui submit button" ng-click="vm.createReviewInformation()">Submit</div>
     <div class="ui submit button" ng-click="vm.reset()">Reset Form</div>
-  </div>
+  </form>
 </div>
+
+

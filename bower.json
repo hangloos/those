@@ -9,7 +9,8 @@
       "bootstrap": "latest",
       "angular-semantic": "latest",
       "semantic-ui": "latest",
-      "angular-mocks": "latest"
+      "angular-mocks": "latest", 
+      "angular-messages": "latest"
     }
   }
 }
