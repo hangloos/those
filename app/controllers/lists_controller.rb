@@ -30,6 +30,7 @@ class ListsController < ActionController::Base
 
         if list.save
            render json: { status: 'ok'}
+           flash.now[:notice] = 'Bookmarked!'
          else
           render json: { errors: like.errors.full_messages },  status: :unprocessable_entity
         end

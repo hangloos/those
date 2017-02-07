@@ -282,6 +282,7 @@
           if (this.selectedList)  {
           return ListsFactory.addToList(review_id, this.selectedList.id)
                                   .then(getReviews)
+                                  .then(alert("Bookmarked!"))
           } else {
             open('bookmark');
           }

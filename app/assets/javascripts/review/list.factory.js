@@ -85,7 +85,6 @@
       }
 
       function handleError(response)  {
-        debugger
         return response.data
 
       }
