@@ -87,7 +87,7 @@
           }
 
           if (!!$stateParams.reviewId)  {
-            location.reload()
+            getReviewShow($stateParams.reviewId)
           }
 
           else {
@@ -202,7 +202,6 @@
           return ReviewsFactory.deleteReview(id)
                             .then(location.hash = "#/reviews")
                             .then(getReviews)
-                            .then(getReviewShow(id))
           
         }
 
@@ -246,14 +245,14 @@
           return CommentsFactory.createComment(review_id, this.comment)
                                 .then(reset)
                                 .then(getReviews)
-                                .then(getReviewShow(review_id))
+                                
         }
 
 
         function deleteComment(comment_id, review_id)  {
           return CommentsFactory.deleteComment(comment_id, review_id)
                                   .then(getReviews)
-                                  .then(getReviewShow(review_id))
+                                  
         }
 
         function editComment()  {
@@ -270,7 +269,7 @@
         function updateComment(comment_id, review_id, comment)  {
           return CommentsFactory.updateComment(comment_id, review_id, comment)
                                     .then(getReviews)
-                                    .then(getReviewShow(review_id))
+                                  
         }
 
 
