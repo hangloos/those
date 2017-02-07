@@ -14,7 +14,6 @@
         vm.deleteReview = deleteReview;
         vm.createReviewInformation = createReviewInformation;
         vm.reset = reset;
-        vm.editTrueValue = false;
         vm.editReviewRating = editReviewRating;
         vm.createComment = createComment;
         vm.deleteComment = deleteComment;
@@ -22,16 +21,12 @@
         vm.getReviewShow = getReviewShow;
         vm.setReview = setReview;
         vm.createList = createList;
-        vm.listFormValue = false;
-        vm.editComment = editComment;
-        vm.editCommentToggle = false;
         vm.updateComment = updateComment;
         vm.addToList = addToList;
         vm.createReviewLike = createReviewLike;
         vm.deleteList = deleteList;
         vm.roundUpNumber = roundUpNumber;
         vm.checkReviewLike = checkReviewLike;
-
         vm.listReviews = [];
         vm.removeReviewsLists = removeReviewsLists;
         vm.removalListsObject = removalListsObject
@@ -233,9 +228,7 @@
          function reset() {
           vm.comment = ""
           vm.newReview = {}
-          vm.editTrueValue = false
           vm.newList = ""
-          vm.listFormValue = false
          }
 
 
@@ -255,16 +248,6 @@
                                   
         }
 
-        function editComment()  {
-          if (vm.editCommentToggle) {
-            vm.editCommentToggle = false
-          }
-
-          else  {
-          vm.editCommentToggle = true
-          }
-
-        }
 
         function updateComment(comment_id, review_id, comment)  {
           return CommentsFactory.updateComment(comment_id, review_id, comment)
