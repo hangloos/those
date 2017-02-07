@@ -66,7 +66,7 @@
             Auth.register(vm.userForm, config)
                   .then(function(registeredUser)  {
                       vm.user = registeredUser
-                      window.localStorage.setItem('user', JSON.stringify(user))
+                      window.localStorage.setItem('user', JSON.stringify(vm.user))
                       location.reload()
                       $location.path('/reviews')
                 }, function(error)  {
