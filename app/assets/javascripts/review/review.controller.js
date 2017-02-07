@@ -42,23 +42,14 @@
         vm.setTimeout = setTimeout;
         
 
-        function open(item, time) {
-          if (time) {
+        function open(item) {
           $('.ui.modal.' + item).modal('show')
-          //$('.ui.modal.' + item).modal('hide'), 4000;
 
-        } else {
-          $('.ui.modal.' + item).modal('show')
-          }
         }
 
         function hide()  {
           $('.ui.modal').modal('hide')
         }
-
-        setTimeout(function(item){
-          $('.ui.modal.' + item).modal('hide')
-            }, 4000);
 
 
         if (!$stateParams.reviewId) {
@@ -89,9 +80,8 @@
         // Reviews All
 
         function getReviews() {
-          vm.newComment = ""
           vm.newReview = ""
-          if (!!$stateParams.reviewId) {
+          if (!$stateParams.reviewId) {
             return ReviewsFactory.getReviews()
                         .then(setReviews)
           }
@@ -143,6 +133,17 @@
         // Create Review
 
         function setNewReview(movie) {
+
+          if (movie == "The service is unavailable.") {
+            alert(movie);
+          }
+
+          else if (movie == "") {
+            alert("Service down. No data returned. Please try again later.")
+          }
+
+          else {
+
           vm.newReview.title = movie.Title
           vm.newReview.actors = movie.Actors
           vm.newReview.genres = movie.Genre
@@ -169,7 +170,9 @@
           return ReviewsFactory.createReview(vm.newReview)
                               .then(setReviews)
                               .then(location.hash = "#/reviews")
-                              .then(location.reload())
+                              
+            } 
+    
 
         }
 
@@ -181,8 +184,10 @@
          // Review Show
 
         function getReviewShow(id)  {
+          if (!!$stateParams.reviewId) {
             return ReviewsFactory.getReview(id)
                                         .then(setReview)
+          }
         }
 
         function setReview(review)  {
@@ -201,25 +206,25 @@
           
         }
 
-        function editReviewRating(review_id) {
-          if (this.newReview.those_movie_guys_review && !(this.newReview.those_movie_guys_rating)){
-                      return ReviewsFactory.updateReview(review_id,"", this.newReview.those_movie_guys_review[review_id])
+        function editReviewRating(review_id, rating, review) {
+          if (review && !(rating)){
+                      return ReviewsFactory.updateReview(review_id,"", review)
                             .then(getReviews)
                             .then(getReviewShow(review_id))
           }
 
-          else if (!(this.newReview.those_movie_guys_review) && this.newReview.those_movie_guys_rating){
-          return ReviewsFactory.updateReview(review_id,this.newReview.those_movie_guys_rating[review_id], "")
+          else if (!(review) && rating){
+          return ReviewsFactory.updateReview(review_id,rating, "")
                             .then(getReviews)
                             .then(getReviewShow(review_id))
           }
 
-          else if (!(this.newReview.those_movie_guys_review) && !(this.newReview.those_movie_guys_rating)){
+          else if (!(review) && !(rating)){
           return getReviews();
           }
 
           else {
-            return ReviewsFactory.updateReview(review_id,this.newReview.those_movie_guys_rating[review_id], this.newReview.those_movie_guys_review[review_id])
+            return ReviewsFactory.updateReview(review_id,rating, review)
                             .then(getReviews)
                             .then(getReviewShow(review_id))
           }
@@ -227,6 +232,7 @@
         }
 
          function reset() {
+          vm.comment = ""
           vm.newReview = {}
           vm.editTrueValue = false
           vm.newList = ""
@@ -237,7 +243,8 @@
           // Comments
 
         function createComment(review_id, user_id)  {
-          return CommentsFactory.createComment(review_id, this.newComment[review_id])
+          return CommentsFactory.createComment(review_id, this.comment)
+                                .then(reset)
                                 .then(getReviews)
                                 .then(getReviewShow(review_id))
         }
@@ -260,8 +267,8 @@
 
         }
 
-        function updateComment(comment_id, review_id)  {
-          return CommentsFactory.updateComment(comment_id, review_id, this.newComment[comment_id])
+        function updateComment(comment_id, review_id, comment)  {
+          return CommentsFactory.updateComment(comment_id, review_id, comment)
                                     .then(getReviews)
                                     .then(getReviewShow(review_id))
         }

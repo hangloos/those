@@ -9,9 +9,11 @@
 
 <div class="ui items">
   <div class="item">
+
+  <div ng-include="'review/edit.html'" ng-show="showEditForm"></div>
     <!-- Image -->
     <div class="ui medium image">
-      <div class="ui blue ribbon label large"><h2>{{vm.reviewData.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.showEditForm()" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"></i></div>
+      <div class="ui blue ribbon label large"><h2>{{vm.reviewData.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="showEditForm = !showEditForm" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"></i></div>
       <a class="ui blue right corner label" ng-click="vm.addToList(vm.reviewData.id)" ng-show="hm.user.lists.length > 0"><i class="bookmark icon"></i></a>
       <img src="{{vm.reviewData.picture_url}}">
     </div>
@@ -53,7 +55,7 @@
               <span class="date">
               {{comment.created_at | date: 'longDate'}} 
               <a style="color:blue" ng-click="vm.createLike(vm.reviewData.id,comment.id)" ng-show="hm.user.email" class="item"><i ng-click="vm.createLike(vm.reviewData.id,comment.id)" ng-show="hm.user.email" class="like link icon"></i><div class="ui red label">{{comment.likes.length}}</div></a>
-              <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-click="vm.editComment()"><i class="edit icon"></i></a>
+              <a style="color:black" ng-show="comment.user_id == hm.user.id" ng-click="showEditCommentForm = !showEditCommentForm"><i class="edit icon"></i></a>
               <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-really-message="Are you sure you want to delete this comment?" ng-really-click="vm.deleteComment(comment.id, vm.reviewData.id)"><i class="remove icon"></i></a>
               </span>
             </div>
@@ -62,7 +64,7 @@
             </div>
           </div>
           <!-- Edit Comment -->
-          <div ng-include="'review/reviews_edit_comment.html'"></div>
+          <div ng-show="showEditCommentForm && comment.user_id == hm.user.id" ng-include="'review/reviews_edit_comment.html'"></div>
         </div>
         </div>
 
@@ -81,7 +83,7 @@
         
         <form class="ui reply form">
           <div class="field">
-            <input ng-show="hm.user.email" ng-model="vm.newComment[vm.reviewData.id]" class="small_text_area" placeholder="Add Comment">
+            <input ng-show="hm.user.email" ng-model="vm.comment" class="small_text_area" placeholder="Add Comment">
           </div>
           <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(vm.reviewData.id, hm.user.id)" ng-show="hm.user.email">
             <i class="icon edit"></i> Add Reply

@@ -13,12 +13,12 @@
 <div class="ui items">
   <div class="item" ng-repeat="review in vm.reviews | orderBy: '-created_at' | filter:searchBox | startFrom:vm.currentPage*vm.pageSize | limitTo: vm.pageSize">
       <!-- Edit Review Form - Admin -->
-    <div ng-include="'review/edit.html'"></div>
+    <div ng-include="'review/edit.html'" ng-show="showEditForm"></div>
 
     <div ng-include="'review/modal/bookmark_modal.html'"></div>
     <!-- Image -->
     <div class="ui medium image">
-      <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="vm.open('editreview')" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
+      <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="showEditForm = !showEditForm" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
       <a class="ui blue right corner label" ng-click="vm.addToList(review.id)" ng-show="hm.user.lists.length > 0"><i class="bookmark icon"></i></a>
       <img ng-src="{{review.picture_url}}">
     </div>

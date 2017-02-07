@@ -3,7 +3,7 @@
       .module('those-movie-guys')
       .factory('ReviewsFactory', ReviewsFactory)
 
-    function ReviewsFactory($stateParams, $http)  {
+    function ReviewsFactory($stateParams, $http, $timeout)  {
 
       return {
         getReviews: getReviews,
@@ -45,10 +45,12 @@
       }
 
       function getInformation(id) {
-         return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id)
+         return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id, {timeout: 4000})
                     .then(handleResponse)
                     .catch(handleError)
       }
+
+
 
       function createReviewLike(review_id, user_id) {
         var req = {
