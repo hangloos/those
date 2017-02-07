@@ -45,7 +45,7 @@
       }
 
       function getInformation(id) {
-         return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id, {timeout: 4000})
+         return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id, {timeout: 8000})
                     .then(handleResponse)
                     .catch(handleError)
       }

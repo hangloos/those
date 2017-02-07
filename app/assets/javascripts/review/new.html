@@ -6,15 +6,15 @@
     <div class="four fields">
       <div class="field">
         <label>IMDB Id</label>
-        <input ng-model="vm.newReview.imdb_id" name="imdb_id" placeholder="Copy IMDB Id from URL" type="text" maxlength="9" minlength="9" required ng-pattern="/t{2}[0-9]{7}/">
-        <div ng-messages="createReview.imdb_id.$error"><div ng-message="required">This field is required</div>
-        <div ng-message="pattern">Must be a valid IMDB id</div>
+        <input ng-model="vm.newReview.imdb_id" name="imdb_id" placeholder="Copy IMDB Id from URL" type="text" maxlength="9" minlength="9" required ng-pattern="/^t{2}[0-9]{7}/">
+        <span style="color:red" ng-show="createReview.imdb_id.$error.required" ng-message="required">This field is required</span>
+        <span style="color:red" ng-show="createReview.imdb_id.$error.pattern" ng-message="pattern">Must be a valid IMDB id</span>
         </div>
       </div>
       <div class="field">
         <label>Viewing Platform</label>
         <input type="text" ng-model="vm.newReview.viewing_platform" name="platform" placeholder="Where did you watch this on?" required>
-        <div ng-messages="createReview.platform.$error"><div ng-message="required">This field is required</div></div>
+        <span style="color:red" ng-show="createReview.platform.$error.required" ng-message="required">This field is required</span>
       </div>
       <div class="field">
         <label>Rating</label>
@@ -25,7 +25,7 @@
 
       </div>
     </div>
-    <div class="ui submit button" ng-click="vm.createReviewInformation()">Submit</div>
+    <div class="ui submit button" ng-click="createReview.$valid && vm.createReviewInformation()">Submit</div>
     <div class="ui submit button" ng-click="vm.reset()">Reset Form</div>
   </form>
 </div>

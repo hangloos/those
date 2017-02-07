@@ -137,6 +137,10 @@
             alert("Service down. No data returned. Please try again later.")
           }
 
+          else if (!movie.title) {
+            alert("Timed Out")
+          }
+
           else {
 
           vm.newReview.title = movie.Title
