@@ -19,7 +19,7 @@
     <!-- Image -->
     <div class="ui medium image">
       <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="showEditForm = !showEditForm" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
-      <a class="ui blue right corner label" ng-click="vm.addToList(review.id)" ng-show="hm.user.lists.length > 0"><i class="bookmark icon"></i></a>
+      <a class="ui blue right corner label" ng-click="vm.addToList(review.id)" ><i class="bookmark icon"></i></a>
       <img ng-src="{{review.picture_url}}">
     </div>
     
