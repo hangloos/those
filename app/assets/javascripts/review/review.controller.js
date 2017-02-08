@@ -270,7 +270,7 @@
 
         function removeReviewsLists(user_id){
           return ListsFactory.removeFromLists(this.listReviews)
-                                          .then(getReviews)
+                                          .then(getUser(user_id))
                                           .then(getUser(user_id))
         }
 
@@ -321,6 +321,7 @@
         }
 
         function createLike(review_id, comment_id) {
+          console.log("create like")
           return LikesFactory.createLike(review_id,comment_id)
                                   .then(getReviews)
         }
