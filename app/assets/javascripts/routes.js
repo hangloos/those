@@ -56,6 +56,11 @@
                     templateUrl: 'lists/index.html',
                     controller: 'ReviewController as vm'
                 })
+                .state('home.longMovies',    {
+                    url: 'longMovies/:length',
+                    templateUrl: 'review/longMovies.html',
+                    controller: 'ReviewController as vm'
+                })
             $urlRouterProvider.otherwise('reviews')
         })
 

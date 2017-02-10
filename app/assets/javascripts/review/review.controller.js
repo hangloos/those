@@ -30,6 +30,7 @@
         vm.listReviews = [];
         vm.removeReviewsLists = removeReviewsLists;
         vm.removalListsObject = removalListsObject
+        vm.stateParams = $stateParams.length
 
         
         vm.open = open;
@@ -94,8 +95,31 @@
         function setReviews(data) {
           vm.totalItems = data.length
           vm.reviews = data
+          vm.reviewsRuntimeFilteredJS = []
+          vm.reviewsRuntimeFilteredANG = []
+          vm.reviews.forEach(function(review) {
+            review.newComment = ""
+          })
+
+          //angular
+          vm.reviews.forEach(function(review) {
+            if (parseInt(review.runtime.split(" ")[0]) > parseInt(vm.stateParams))
+              vm.reviewsRuntimeFilteredANG.push(review)         
+          })
+
+          //JS
+          vm.reviews.forEach(function(review) {
+            if (parseInt(review.runtime.split(" ")[0]) > parseInt(vm.stateParams))
+              vm.reviewsRuntimeFilteredJS.push('<span>' + review.title + '-' + review.runtime + '</span>' + '<br>')
+          })
+
+          $("#longMovies").html(vm.reviewsRuntimeFilteredJS)
+
+
           return vm.reviews
         }
+
+
 
 
          // Pagination Reviews
@@ -137,8 +161,8 @@
             alert("Service down. No data returned. Please try again later.")
           }
 
-          else if (!movie.title) {
-            alert("Timed Out")
+          else if (!movie.Title) {
+            alert("Service down. No data returned. Please try again later.")
           }
 
           else {
@@ -167,7 +191,7 @@
           vm.newReview.tomato_url = movie.tomatoURL
         
           return ReviewsFactory.createReview(vm.newReview)
-                              .then(setReviews)
+                              .then(getReviews)
                               .then(location.hash = "#/reviews")
                               
             } 
@@ -238,8 +262,8 @@
 
           // Comments
 
-        function createComment(review_id, user_id)  {
-          return CommentsFactory.createComment(review_id, this.comment)
+        function createComment(review_id, user_id, comment)  {
+          return CommentsFactory.createComment(review_id, comment)
                                 .then(reset)
                                 .then(getReviews)
                                 
@@ -302,14 +326,35 @@
 
         // Comment Likes , Review Likes
 
-        function checkReviewLike(user_id, review_id)  {
-            this.reviews.forEach(function(value) {
-              value.review_likes.forEach(function(value)  {
-                user_id == value.user_id && review_id == value.review_id
-              }) 
-            })
-          
+        function checkReviewLike(review_id)  {
+          var reviewValue = []
+          var reviewLikeAlready = false
+          var user = this.user
+
+          if (!this.user) {
+            return reviewLikeAlready
+          }
+          else {
+
+          for (var i = 0; i < this.reviews.length; i++) {
+            if(review_id == this.reviews[i].id) {
+              reviewValue.push(this.reviews[i])
+              break
+            }
+          }
+              if (reviewValue[0].review_likes.length > 0) {
+                reviewValue[0].review_likes.forEach(function(like)  {
+                  if (like.user_id == user.id) {
+                    reviewLikeAlready = true
+                  }
+                })
+
+              }
+          }
+          return reviewLikeAlready
         }
+
+        
         function createReviewLike(event, review_id, user_id) {
           if (event.currentTarget.className == "ui toggle button active"){
           event.currentTarget.className = "ui toggle button";
@@ -321,7 +366,6 @@
         }
 
         function createLike(review_id, comment_id) {
-          console.log("create like")
           return LikesFactory.createLike(review_id,comment_id)
                                   .then(getReviews)
         }

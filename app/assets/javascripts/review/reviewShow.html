@@ -11,6 +11,7 @@
   <div class="item">
 
   <div ng-include="'review/edit.html'" ng-show="showEditForm"></div>
+  <div ng-include="'review/modal/bookmark_modal.html'"></div>
     <!-- Image -->
     <div class="ui medium image">
       <div class="ui blue ribbon label large"><h2>{{vm.reviewData.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="showEditForm = !showEditForm" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(vm.reviewData.id)" ng-show="hm.user.admin"></i></div>
