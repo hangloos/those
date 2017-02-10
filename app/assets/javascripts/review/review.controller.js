@@ -27,6 +27,7 @@
         vm.deleteList = deleteList;
         vm.roundUpNumber = roundUpNumber;
         vm.checkReviewLike = checkReviewLike;
+        vm.checkLike = checkLike;
         vm.listReviews = [];
         vm.removeReviewsLists = removeReviewsLists;
         vm.removalListsObject = removalListsObject
@@ -331,7 +332,7 @@
           var reviewLikeAlready = false
           var user = this.user
 
-          if (!this.user) {
+          if (!user) {
             return reviewLikeAlready
           }
           else {
@@ -354,7 +355,7 @@
           return reviewLikeAlready
         }
 
-        
+
         function createReviewLike(event, review_id, user_id) {
           if (event.currentTarget.className == "ui toggle button active"){
           event.currentTarget.className = "ui toggle button";
@@ -363,6 +364,43 @@
           }
           return ReviewsFactory.createReviewLike(review_id,user_id)
                                        .then(getReviews)
+        }
+
+        function checkLike(comment_id, comment)  {
+          var commentValue = []
+          var reviewValue = []
+          var commentLikeAlready = false
+          var user = this.user
+          var review_id = comment.review_id
+
+          if (!user)  {
+            return commentLikeAlready
+          }
+
+           for (var i = 0; i < this.reviews.length; i++) {
+             if(review_id == this.reviews[i].id) {
+               reviewValue.push(this.reviews[i])
+               break
+             }
+            }
+
+              for (var i = 0; i < reviewValue[0].comments.length; i++) {
+               if (reviewValue[0].comments[i].id == comment_id)  {
+                 commentValue.push(reviewValue[0].comments[i])
+                 break
+               }
+              }
+
+               if (commentValue[0].likes.length > 0) {
+                commentValue[0].likes.forEach(function(like)  {
+                  if (like.user_id == user.id) {
+                    commentLikeAlready = true
+                  }
+                })
+
+              }
+      
+          return commentLikeAlready
         }
 
         function createLike(review_id, comment_id) {
