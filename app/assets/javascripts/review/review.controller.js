@@ -327,30 +327,20 @@
 
         // Comment Likes , Review Likes
 
-        function checkReviewLike(review_id)  {
-          var reviewValue = []
+        function checkReviewLike(review)  {
           var reviewLikeAlready = false
           var user = this.user
 
           if (!user) {
             return reviewLikeAlready
           }
-          else {
 
-          for (var i = 0; i < this.reviews.length; i++) {
-            if(review_id == this.reviews[i].id) {
-              reviewValue.push(this.reviews[i])
-              break
-            }
-          }
-              if (reviewValue[0].review_likes.length > 0) {
-                reviewValue[0].review_likes.forEach(function(like)  {
+              if (review.review_likes.length > 0) {
+                review.review_likes.forEach(function(like)  {
                   if (like.user_id == user.id) {
                     reviewLikeAlready = true
                   }
                 })
-
-              }
           }
           return reviewLikeAlready
         }
@@ -366,33 +356,18 @@
                                        .then(getReviews)
         }
 
-        function checkLike(comment_id, comment)  {
+        function checkLike(comment)  {
+
           var commentValue = []
-          var reviewValue = []
           var commentLikeAlready = false
           var user = this.user
-          var review_id = comment.review_id
 
           if (!user)  {
             return commentLikeAlready
           }
 
-           for (var i = 0; i < this.reviews.length; i++) {
-             if(review_id == this.reviews[i].id) {
-               reviewValue.push(this.reviews[i])
-               break
-             }
-            }
-
-              for (var i = 0; i < reviewValue[0].comments.length; i++) {
-               if (reviewValue[0].comments[i].id == comment_id)  {
-                 commentValue.push(reviewValue[0].comments[i])
-                 break
-               }
-              }
-
-               if (commentValue[0].likes.length > 0) {
-                commentValue[0].likes.forEach(function(like)  {
+               if (comment.likes.length > 0) {
+                comment.likes.forEach(function(like)  {
                   if (like.user_id == user.id) {
                     commentLikeAlready = true
                   }
