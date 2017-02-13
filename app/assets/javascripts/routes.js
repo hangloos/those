@@ -61,6 +61,11 @@
                     templateUrl: 'review/longMovies.html',
                     controller: 'ReviewController as vm'
                 })
+                .state('home.closetTheater', {
+                    url: 'closet_theater',
+                    templateUrl: 'review/closetTheater.html',
+                    controller: 'ReviewController as vm'
+                })
             $urlRouterProvider.otherwise('reviews')
         })
 

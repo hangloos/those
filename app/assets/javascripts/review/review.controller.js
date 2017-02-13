@@ -31,7 +31,8 @@
         vm.listReviews = [];
         vm.removeReviewsLists = removeReviewsLists;
         vm.removalListsObject = removalListsObject
-        vm.stateParams = $stateParams.length
+        vm.stateParams = $stateParams.length;
+        vm.getTheaters = getTheaters;
 
         
         vm.open = open;
@@ -102,24 +103,46 @@
             review.newComment = ""
           })
 
-          //angular
           vm.reviews.forEach(function(review) {
-            if (parseInt(review.runtime.split(" ")[0]) > parseInt(vm.stateParams))
-              vm.reviewsRuntimeFilteredANG.push(review)         
+            review.runtime = parseInt(review.runtime.split(" ")[0])
           })
 
           //JS
           vm.reviews.forEach(function(review) {
-            if (parseInt(review.runtime.split(" ")[0]) > parseInt(vm.stateParams))
+            if (review.runtime > parseInt(vm.stateParams))
               vm.reviewsRuntimeFilteredJS.push('<span>' + review.title + '-' + review.runtime + '</span>' + '<br>')
           })
-
+        
           $("#longMovies").html(vm.reviewsRuntimeFilteredJS)
 
 
           return vm.reviews
-        }
+          }
 
+
+          function getTheaters()  {
+            if (navigator.geolocation)  {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var latitude = position.coords.latitude
+              var longitude = position.coords.longitude
+              if (!$("#theaters").text()){
+                $("#loading").hide()
+              return ReviewsFactory.getTheaters(latitude,longitude)
+                                                .then(setTheaters)
+              }
+            })
+          } else {
+            alert("You do not have geolocation activated in your browser")
+          }
+          }
+
+          function setTheaters(theaters)  {
+            var theaterArray = [];
+            for (var i = 0; i < 20; i++)  {
+              theaterArray.push('<li>' + theaters.response.groups[0].items[i].venue.name + '-' + theaters.response.groups[0].items[i].venue.location.address +'</li>' + '<br>')
+            }
+            $("#theaters").html(theaterArray)
+          }
 
 
 
@@ -336,11 +359,13 @@
           }
 
               if (review.review_likes.length > 0) {
-                review.review_likes.forEach(function(like)  {
-                  if (like.user_id == user.id) {
+
+                for (var i = 0; i < review.review_likes.length;i++) {
+                  if (review.review_likes[i].user_id == user.id) {
                     reviewLikeAlready = true
+                    break
                   }
-                })
+                }
           }
           return reviewLikeAlready
         }
@@ -367,11 +392,13 @@
           }
 
                if (comment.likes.length > 0) {
-                comment.likes.forEach(function(like)  {
-                  if (like.user_id == user.id) {
+
+                for (var i = 0; i < comment.likes.length;i++){
+                  if (comment.likes[i].user_id == user.id) {
                     commentLikeAlready = true
+                    break
                   }
-                })
+                }
 
               }
       

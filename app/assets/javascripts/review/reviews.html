@@ -4,8 +4,8 @@
   <option ng-selected="true" value="">Select One Of Your Lists</option>
 </select>
 <div class="ui search">
-<input class="prompt" type="text" placeholder="Search By Title.." ng-model="searchBox.title">
-<input class="prompt" type="text" placeholder="Search By Rating.." ng-model="searchBox.those_movie_guys_rating">
+<input class="prompt" type="text" placeholder="Search By Title.." ng-model="searchBox.title" ng-show="vm.currentPage == 0">
+<input class="prompt" type="text" placeholder="Search By Rating.." ng-model="searchBox.those_movie_guys_rating" ng-show="vm.currentPage == 0">
 </div>
 
 <br></br>
@@ -48,7 +48,7 @@
           <p>Genres: {{review.genres}}</p>
           <p>Directors: {{review.director}}</p>
           <p>Writers: {{review.writer}}</p>
-          <p>Runtime: {{review.runtime}}</p>
+          <a href="/#/longMovies/{{review.runtime}}"><p>Runtime: {{review.runtime}} Minutes</p></a>
       </div>
       <!-- Comments of Reviews -->
       <div ng-include="'review/reviews_comments.html'"></div>

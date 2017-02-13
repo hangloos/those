@@ -12,7 +12,8 @@
         updateReview: updateReview,
         deleteReview: deleteReview,
         getInformation: getInformation,
-        createReviewLike: createReviewLike
+        createReviewLike: createReviewLike,
+        getTheaters: getTheaters
       }
 
       function getReviews() {
@@ -48,6 +49,15 @@
          return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id)
                     .then(handleResponse)
                     .catch(handleError)
+      }
+
+      function getTheaters(lat, long)  {
+        var lat = lat.toFixed(2)
+        var long = long.toFixed(2)
+        return $http.get('https://api.foursquare.com/v2/venues/explore?ll='+lat+','+long+'&query=Movie%20Theater&client_id=EMPR4BQDMW4G3Y1COXNYKU4RILKJ5T0P2L5CSDEPSUCD3Q0V&client_secret=PWOU4QRIOBOON2ILKGUM2G1AUS13FECKIIMTOGH0WBSXFOHE&v=20170213')
+                      .then(handleResponse)
+                      .catch(handleError)
+
       }
 
 
