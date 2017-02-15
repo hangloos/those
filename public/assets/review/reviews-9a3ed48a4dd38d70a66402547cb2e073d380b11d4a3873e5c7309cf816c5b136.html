@@ -1,0 +1,72 @@
+<button class="ui right floated button" ng-click="vm.open('list')" ng-show="hm.user">Create List</button>
+<div ng-include="'review/createListForm.html'"></div>
+<select class="ui dropdown" ng-options="list.name for list in vm.user.lists" ng-model="vm.selectedList" ng-show="vm.user && vm.user.lists.length > 0">
+  <option ng-selected="true" value="">Select One Of Your Lists</option>
+</select>
+<div class="ui search">
+<input class="prompt" type="text" placeholder="Search By Title.." ng-model="searchBox.title" ng-show="vm.currentPage == 0">
+<input class="prompt" type="text" placeholder="Search By Rating.." ng-model="searchBox.those_movie_guys_rating" ng-show="vm.currentPage == 0">
+</div>
+
+<br></br>
+
+<div class="ui items">
+  <div class="item" ng-repeat="review in vm.reviews | orderBy: '-created_at' | filter:searchBox | startFrom:vm.currentPage*vm.pageSize | limitTo: vm.pageSize">
+      <!-- Edit Review Form - Admin -->
+    <div ng-include="'review/edit.html'" ng-show="showEditForm"></div>
+
+    <div ng-include="'review/modal/bookmark_modal.html'"></div>
+    <!-- Image -->
+    <div class="ui medium image">
+      <div class="ui blue ribbon label large"><h2>{{review.those_movie_guys_rating}}</h2></i><i class="edit link icon" ng-click="showEditForm = !showEditForm" ng-show="hm.user.admin"></i><i class="remove link icon" ng-really-message="Are you sure you want to delete?" ng-really-click="vm.deleteReview(review.id)" ng-show="hm.user.admin"></i></div>
+      <a class="ui blue right corner label" ng-click="vm.addToList(review.id)" ><i class="bookmark icon"></i></a>
+      <img ng-src="{{review.picture_url}}">
+    </div>
+    
+    <div class="content">
+      <div class="header" id="uppercase">{{review.title}}-{{review.review_type}}</div>
+        <!-- review likes -->
+        <div class="ui labeled button" tabindex="0">
+          <div ng-show="hm.user" ng-class="vm.checkReviewLike(review) ? 'ui toggle button active' : 'ui toggle button'" ng-click="vm.createReviewLike($event, review.id,hm.user.id)"><i class="heart icon link" ></i></div>
+          <p class="ui basic red left pointing label">{{review.review_likes.length}}</p>
+        </div>
+      <div class="meta">
+        <span class="location">{{review.viewing_platform}}</span>
+      </div>
+      <div class="description">
+        <p>{{review.those_movie_guys_review}}</p>
+      </div>
+      <div class="meta">
+        <img src="http://ia.media-imdb.com/images/M/MV5BMTQyMTcxNjg5Nl5BMl5BcG5nXkFtZTgwOTgzNDg0MjE@._V1_.png" id="thumbnail-logo">
+        <a href="http://imdb.com/title/{{ review.imdb_id }}" target="_blank"><u>{{review.imdb_rating}}</u></a>
+        <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo"><a href="{{review.tomato_url}}" target="_blank"><u>Critics - {{review.tomato_critics}}%</u></a>
+        <img src="http://www.billdamon.com/images/rottentomatoes/fresh.png" id="thumbnail-logo">
+        <a href="{{review.tomato_url}}" target="_blank"><u>Users - {{review.tomato_user}}%</u></a>
+      </div>
+      <div class="meta">
+          <p>Actors: {{review.actors}}</p>
+          <p>Genres: {{review.genres}}</p>
+          <p>Directors: {{review.director}}</p>
+          <p>Writers: {{review.writer}}</p>
+          <a href="/#/longMovies/{{review.runtime}}"><p>Runtime: {{review.runtime}} Minutes</p></a>
+      </div>
+      <!-- Comments of Reviews -->
+      <div ng-include="'review/reviews_comments.html'"></div>
+    </div>
+  </div>
+</div>
+
+  <div class="ui buttons">
+  <button class="ui labeled icon button" ng-show="!vm.currentPage <= 0" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage=vm.currentPage-1"><i class="left chevron icon"></i>
+        Previous Page
+    </button>
+    <button class="ui button disabled">{{vm.currentPage+1}}/{{vm.numberOfPages()}}</button>
+    <button class="ui right labeled icon button" ng-show="!(vm.currentPage >= vm.numberofPages())" ng-disabled="vm.currentPage >= vm.numberOfPages() - 1" ng-click="vm.currentPage=vm.currentPage+1">
+        Next Page
+        <i class="right chevron icon"></i>
+    </button>
+    </div>
+
+
+
+

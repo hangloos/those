@@ -1,0 +1,13 @@
+
+<div class="ui modal list" align="center" id="small-modal">
+  <p class="ui medium header">Create List</p>
+  <div class="ui inverted small form">
+      <form>
+        <div class="ui small input">
+          <input class="ui small input" ng-model="vm.newList" placeholder="List Name">
+        </div>
+        <button  class="mini ui submit button" type="submit" ng-click="vm.createList(hm.user.id) && vm.reset()">Submit</button>
+        <button class="mini ui submit button" type="reset" ng-click="vm.reset()">Reset</button>
+      </form>
+  </div>
+</div>

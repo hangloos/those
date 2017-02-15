@@ -1,0 +1,46 @@
+
+<!-- about -->
+<h2 class="ui center aligned icon header">
+  <i class="circular users icon"></i>
+  Those Movie Guys
+</h2>
+  <span>We're those guys that you go to when you don't know what to watch next. If you don't have someone like that in your life, now you do. If you have someone already, that's ok, we're better than them. We understand that there is nothing worse than waisting your time on a bad movie or show. It is our goal to not let that happen ever again. Join the guys!</span>
+<br></br>
+  <span class="middle"><a style="color:black" target="_blank" href="https://www.instagram.com/those.movie.guys/"><i class="instagram icon"></i></a>Follow Us On Instagram</span>
+<br></br>
+  <span><a style="color:black" href="mailto:thosemovieguys1@gmail.com?Subject=Those Movie Guys Inquiry%20" target="_top"><i class="mail icon"></i></a>Contact Us</span>
+
+
+<!-- popular movies and tv -->
+<div class="ui items" id="trending-background">
+  <h3>Popular Movies</h3>
+  <div class="item" ng-repeat="movie in vm.discoverMovies">
+    <div class="image">
+      <img ng-src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}">
+    </div>
+    <div class="content">
+      <h3 class="ui block header">{{movie.title}}</h3>
+      <div class="ui label">
+        <p>{{movie.overview}}</p>
+      </div>
+      <div class="extra">
+        <p><a href="https://www.themoviedb.org/movie/{{movie.id}}" target="_blank" class="btn btn-primary" role="button">View</a></p>
+      </div>
+    </div>
+  </div>
+  <h3>Popular TV</h3>
+  <div class="item" ng-repeat="tv in vm.discoverTv">
+    <div class="image">
+      <img ng-src="https://image.tmdb.org/t/p/w500/{{tv.backdrop_path}}">
+    </div>
+    <div class="content">
+      <a class="ui block header">{{tv.name}}</a>
+      <div class="ui label">
+        <p>{{tv.overview}}</p>
+      </div>
+      <div class="extra">
+        <p><a href="https://www.themoviedb.org/movie/{{tv.id}}" target="_blank" class="btn btn-primary" role="button">View</a></p>
+      </div>
+    </div>
+  </div>
+</div>

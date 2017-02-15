@@ -1,0 +1,42 @@
+<div class="ui comments">
+  <h3 class="ui dividing header">Comments</h3>
+  <div  class="comment" ng-repeat="comment in review.comments | orderBy: '-created_at' | startFrom:vm.currentCommentPage*vm.commentPageSize | limitTo: vm.commentPageSize">
+    <div class="content">
+      <a class="author">{{comment.user.username}}</a>
+      <div class="metadata">
+        <span class="date">
+        {{comment.created_at | date: 'longDate'}} 
+        <a style="color:blue" ng-click="vm.createLike(review.id,comment.id)" ng-show="hm.user.email" class="item"><i ng-class="vm.checkLike(comment) ? 'like icon active' : 'like icon'"></i> Like<div class="ui red label">{{comment.likes.length}}</div></a>
+        <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-click="showEditCommentForm = !showEditCommentForm"><i class="edit icon"></i></a>
+        <a style="color:black" ng-show="hm.user.id == comment.user.id" ng-really-message="Are you sure you want to delete this comment?" ng-really-click="vm.deleteComment(comment.id)"><i class="remove icon"></i></a>
+        </span>
+      </div>
+      <div class="text">
+        {{comment.comment}}
+      </div>
+    </div>
+    <!-- Edit Comment -->
+    <div ng-show="showEditCommentForm && comment.user_id == hm.user.id" ng-include="'review/reviews_edit_comment.html'"></div>
+  </div>
+  </div>
+
+  <div class="mini ui buttons">
+  <button class="ui labeled icon button" ng-show="!vm.currentCommentPage <= 0" ng-disabled="vm.currentCommentPage == 0" ng-click="vm.currentCommentPage=vm.currentCommentPage-1"><i class="left chevron icon"></i>
+        Previous
+    </button>
+    <button class="ui button disabled">{{vm.currentCommentPage+1}}/{{(vm.roundUpNumber(review.comments.length/vm.commentPageSize))}}</button>
+    <button class="ui right labeled icon button" ng-show="!(vm.currentCommentPage >= (vm.roundUpNumber(review.comments.length/vm.commentPageSize - 1)))" ng-disabled="vm.currentCommentPage >= (vm.roundUpNumber(review.comments.length/vm.commentPageSize - 1))" ng-click="vm.currentCommentPage=vm.currentCommentPage+1">
+        Next
+        <i class="right chevron icon"></i>
+    </button>
+    </div>
+
+  
+  <form class="ui reply form">
+    <div class="field">
+      <input ng-show="hm.user.email" ng-model="review.newComment" class="small_text_area" placeholder="Add Comment">
+    </div>
+    <div class="mini ui blue labeled submit icon button" ng-click="vm.createComment(review.id, hm.user.id, review.newComment)" ng-show="hm.user.email">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form>
