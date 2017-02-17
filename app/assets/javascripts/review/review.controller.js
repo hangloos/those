@@ -49,6 +49,7 @@
           $('.ui.modal').modal('hide')
         }
 
+        getTheaters();
 
         if (!$stateParams.reviewId) {
           getReviews();
@@ -120,16 +121,13 @@
           }
 
 
-          function getTheaters()  {
+         function getTheaters()  {
             if (navigator.geolocation)  {
             navigator.geolocation.getCurrentPosition(function(position) {
               var latitude = position.coords.latitude
               var longitude = position.coords.longitude
-              if (!$("#theaters").text()){
-                $("#loading").hide()
               return ReviewsFactory.getTheaters(latitude,longitude)
                                                 .then(setTheaters)
-              }
             })
           } else {
             alert("You do not have geolocation activated in your browser")
@@ -138,8 +136,9 @@
 
           function setTheaters(theaters)  {
             var theaterArray = [];
+            $("#loading").hide()
             for (var i = 0; i < 20; i++)  {
-              theaterArray.push('<li>' + theaters.response.groups[0].items[i].venue.name + '-' + theaters.response.groups[0].items[i].venue.location.address +'</li>' + '<br>')
+              theaterArray.push('<li>' + theaters.response.groups[0].items[i].venue.name + '-' + theaters.response.groups[0].items[i].venue.location.address + "-" + Math.ceil(theaters.response.groups[0].items[i].venue.location.distance * 3.28084) + " feet" + '</li>' + '<br>')
             }
             $("#theaters").html(theaterArray)
           }
