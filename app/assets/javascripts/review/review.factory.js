@@ -46,7 +46,7 @@
       }
 
       function getInformation(id) {
-         return $http.get('http://www.omdbapi.com/?tomatoes=true&i=' + id)
+         return $http.get('https://www.omdbapi.com/?tomatoes=true&i=' + id)
                     .then(handleResponse)
                     .catch(handleError)
       }
