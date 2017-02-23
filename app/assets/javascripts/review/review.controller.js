@@ -79,7 +79,7 @@
         // Reviews All
 
         function getReviews() {
-          vm.newReview = ""
+          vm.newReview = {}
           if (!$stateParams.reviewId) {
             return ReviewsFactory.getReviews()
                         .then(setReviews)
